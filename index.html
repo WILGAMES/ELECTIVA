@@ -149,7 +149,16 @@ footer h2{font:600 20px var(--h);color:var(--ink);margin:14px 0 4px}
 footer ol{padding-left:0;list-style:none}footer li{margin-bottom:5px}
 footer li:target{background:rgba(255,210,63,.35);border-radius:6px}
 footer a{color:var(--az-t)}
-@media(max-width:640px){.lanes{grid-template-columns:1fr}section{padding:20px 14px}}
+.vos{margin:0 0 18px;padding:14px 18px;border-left:6px solid var(--am);background:var(--soft);border-radius:0 14px 14px 0;max-width:46em}.vos p{margin:0 0 8px;font-size:17px;line-height:1.55}.vos p:last-child{margin:0}
+.ctx{max-width:46em;margin:0 0 18px}.ctx h3,.tlh{font-size:22px;margin:0 0 6px}.ctx p{margin:0 0 8px;line-height:1.55}
+.tl{position:relative}.tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:0;border-left:5px double var(--az);transform:translateX(-50%)}
+.tlhead,.per{display:grid;grid-template-columns:minmax(0,1fr) 116px minmax(0,1fr);gap:12px;align-items:start;position:relative}
+.tlhead{margin-bottom:10px}.tlhead span{font:700 24px var(--h);text-align:center}
+.when{align-self:start;text-align:center;position:sticky;top:64px;z-index:1}.when b{display:inline-block;background:var(--az);color:#fff;font:700 14px var(--h);padding:6px 10px;border-radius:99px;border:3px solid var(--paper)}
+.per{margin-bottom:6px}.cell{grid-row:1;min-width:0}.cell:nth-of-type(2){grid-column:1}.cell:nth-of-type(3){grid-column:3}.when{grid-column:2;grid-row:1}
+.src{font-size:14px;color:var(--mute)}.src a{color:var(--az-t)}
+@media(max-width:640px){.tl::before{left:12px;transform:none}.tlhead{display:none}.per{grid-template-columns:1fr;gap:0;padding-left:30px}.when{position:static;text-align:left;margin:4px 0 8px;grid-column:1;grid-row:auto}.cell,.cell:nth-of-type(2),.cell:nth-of-type(3){grid-column:1;grid-row:auto}.cell:empty{display:none}.when b{margin-left:-30px}}
+@media(max-width:640px){section{padding:20px 14px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* ---- Asistente simulado ---- */
@@ -182,7 +191,7 @@ footer a{color:var(--az-t)}
 <noscript><p style="padding:16px;background:#FFD23F;color:#1d2433;margin:0">Esta página necesita JavaScript para los paneles interactivos. Las tarjetas de historia funcionan sin él.</p></noscript>
 <header class="hero" id="top"><i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i><i class="blob b3" aria-hidden="true"></i><i class="blob b4" aria-hidden="true"></i>
 <div class="in"><h1><span>Camino</span> <span>hacia</span> <span>la paz</span></h1>
-<p>Sube a la chiva: de las raíces del conflicto al Acuerdo de Paz de 2016, el Sistema Integral para la Paz y los retos que enfrenta hoy.</p>
+<p>Sube a la chiva y recorre cómo llegamos al Acuerdo de 2016 y a la JEP.</p>
 <a class="go" href="#intro">¡Arrancamos! 🚌</a></div></header>
 <div class="mochila" aria-hidden="true"></div>
 <nav id="road" aria-label="Paradas del recorrido"><ol>
@@ -191,6 +200,10 @@ footer a{color:var(--az-t)}
 <main id="main">
 
 <section id="intro" style="--c:var(--am);--ct:var(--am-t)" aria-labelledby="introT"><h2 id="introT">Antes de arrancar</h2>
+<div class="vos">
+<p>Hola, ¿vos sabés por qué Colombia llegó a tener un modelo de justicia transicional? ¿Cómo funciona el Sistema Integral para la Paz y qué papel cumple la JEP?</p>
+<p>Mirá, muchas personas conocemos algunos acontecimientos de nuestra historia, pero no siempre entendemos cómo se conectan ni cómo llegamos a la situación actual.</p>
+<p>Si estás embolatado, no te preocupés. ¡Subite al jeep! Vamos a recorrer algunos momentos clave de la historia de Colombia para entender cómo llegamos a los acuerdos de paz y por qué hoy existen instituciones como la JEP.</p></div>
 <div class="cols">
 <div><b>¿Para quién es?</b>Para jóvenes que han oído hablar del conflicto, del Acuerdo y de la JEP, pero no tienen un hilo claro para entenderlos.<p class="note">Rango de edad exacto: por confirmar por el equipo.</p></div>
 <div><b>¿Cómo se usa?</b>Toca las tarjetas para abrirlas, sigue el camino hacia abajo y usa los botones «Ver…» para conectar cada problema con la respuesta del Acuerdo.</div>
@@ -204,36 +217,101 @@ footer a{color:var(--az-t)}
 <a class="next" href="#historia" style="--on:#1d2433">Primera parada: Historia de Colombia 🚌</a></section>
 
 <section id="historia" style="--c:var(--ro);--ct:var(--ro-t)" aria-labelledby="t1"><h2 id="t1">1 · Historia de Colombia</h2>
-<p class="lead">Dos caminos que se juntan: lo que pasaba <b>en el campo</b> y lo que pasaba <b>en la ciudad</b>. Abre cada parada. Los círculos verdes con número indican a qué columna del Acuerdo responde cada problema (la columna 5, las víctimas, responde a todo el daño).</p>
+<div class="ctx"><h3>Contexto histórico</h3>
+<p>Empezamos por el siglo XX. A medida que avancemos, vas a notar que, aunque somos un solo país, las condiciones de vida y los acontecimientos que se desarrollaban en el campo y en las ciudades podían ser muy diferentes.</p>
+<p>En algunas regiones rurales había grandes distancias, dificultades para comunicarse y poca presencia de instituciones del Estado. Mientras tanto, muchas de las decisiones políticas se tomaban desde las ciudades, en el centro del país.</p>
+<p>¡Pero ojo! El campo y la ciudad no eran mundos separados. Lo que ocurría en uno también terminaba afectando al otro, aunque no siempre de la misma manera.</p></div>
+<h3 class="tlh">Línea de tiempo: Colombia, entre el campo y la ciudad</h3>
+<p class="lead">Abre cada tarjeta. Los círculos verdes con número indican a qué columna del Acuerdo responde cada problema (la columna 5, las víctimas, responde a todo el daño).</p>
 <p class="warn">Son condiciones que las notas del equipo relacionan con el conflicto. Ninguna lo explica por sí sola.<sup>[<a href="#f1">1</a>]</sup></p>
-<div class="lanes">
-<div class="lane" style="--c:var(--ve);--ct:var(--ve-t)"><h3>En el campo</h3>
-<details class="stop" id="s-c1" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>Inicios del siglo XX</small>Colonización interna</summary><div class="body">
-<p>Después de la Guerra de los Mil Días creció la población y mucha gente se fue a colonizar la periferia en busca de tierra para vivir. Allá no había presencia del Estado.</p>
-<p><b>Problemas:</b> tierra repartida de forma inequitativa y Estado ausente.</p><span class="pn" aria-label="Problema de la columna 1"><i>1</i></span><br><button class="mini" data-pill="1">Ver qué responde el Acuerdo</button></div></details>
-<details class="stop" id="s-c2" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>Años 60</small>Marquetalia y las FARC</summary><div class="body">
-<p>En ese campo sin Estado nace la «República Independiente de Marquetalia» y, con ella, la guerrilla de las FARC-EP: el campo empieza a hacerse sentir en la política, pero con armas.</p>
-<p><b>Problema:</b> las diferencias políticas se resolvían con armas.</p><span class="pn" aria-label="Problema de la columna 3"><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details>
-<details class="stop" id="s-c3" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>Décadas siguientes</small>Las FARC y el narcotráfico</summary><div class="body">
-<p>Con el tiempo, las FARC se financian con el narcotráfico y recurren al reclutamiento forzado. Las economías ilegales se mezclan con el campo.</p>
-<p><b>Problema:</b> el narcotráfico en el campo.</p><span class="pn" aria-label="Problema de la columna 4"><i>4</i></span><br><button class="mini" data-pill="4">Ver qué responde el Acuerdo</button></div></details>
+<div class="tl">
+<div class="tlhead" aria-hidden="true"><span style="color:var(--ve-t)">En el campo</span><span></span><span style="color:var(--na-t)">En la ciudad</span></div>
+
+<div class="per"><div class="when"><b>1899–1930</b></div>
+<div class="cell"><details class="stop" id="s-c1" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · 1899–1930</small>Colonización interna y disputas por la tierra</summary><div class="body">
+<p>Después de la Guerra de los Mil Días, el país tuvo que recuperarse de un conflicto que dejó graves consecuencias. Durante las décadas siguientes, muchas familias campesinas buscaron nuevas tierras y se desplazaron hacia zonas de frontera agrícola, donde la presencia del Estado era limitada. Allí abrieron caminos y establecieron sus fincas. Pero estos territorios no estaban vacíos: ya eran habitados por diferentes comunidades. La falta de títulos claros y las disputas por la propiedad de la tierra se convertirían en problemas cada vez más difíciles de resolver.</p>
+<span class="pn" aria-label="Problema de la columna 1"><i>1</i></span><br><button class="mini" data-pill="1">Ver qué responde el Acuerdo</button></div></details></div>
+<div class="cell"><details class="stop" id="s-u1" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>En la ciudad · 1899–1930</small>Fin de la Guerra de los Mil Días y hegemonía conservadora</summary><div class="body">
+<p>La Guerra de los Mil Días terminó el 21 de noviembre de 1902. Sus consecuencias afectaron la vida social, económica y política del país. Después comenzó un periodo de predominio del Partido Conservador que se mantuvo hasta 1930.</p>
+<p class="src">Fuente: Radio Nacional de Colombia.<sup>[<a href="#f19">19</a>]</sup> Más información: <a href="https://www.radionacional.co/cultura/historia-colombiana/guerra-de-los-mil-dias-siete-puntos-clave-para-entender-este-hecho" target="_blank" rel="noopener noreferrer">Guerra de los Mil Días</a> (se abre en pestaña nueva).</p></div></details></div></div>
+
+<div class="per"><div class="when"><b>Década de 1930</b></div>
+<div class="cell"><details class="stop" id="s-c2" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · Década de 1930</small>Autodefensas campesinas</summary><div class="body">
+<p>La vida en algunas zonas rurales se complicó por los conflictos relacionados con la propiedad de la tierra. Imaginá que don Hernando logró conseguir cinco hectáreas y las trabaja con su familia. Es un minifundista, es decir, alguien que tiene una pequeña parcela de tierra. Pero imaginá que llegan propietarios mucho más poderosos, con fincas de decenas o cientos de hectáreas, conocidos como latifundistas. En algunos lugares, estos grandes propietarios presionaban a los campesinos para que entregaran sus tierras o trabajaran para ellos. Ante estas situaciones y la falta de protección, algunas comunidades campesinas comenzaron a organizarse para defender sus tierras y su seguridad. Así surgieron las autodefensas campesinas.</p>
+<span class="pn" aria-label="Problema de la columna 1"><i>1</i></span><br><button class="mini" data-pill="1">Ver qué responde el Acuerdo</button></div></details></div>
+<div class="cell"><details class="stop" id="s-u2" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>En la ciudad · Década de 1930</small>El Partido Comunista</summary><div class="body">
+<p>En la política nacional predominaban los partidos Liberal y Conservador, conocidos popularmente como los rojos y los azules. Sin embargo, en 1930 surgió otra fuerza política: el Partido Comunista Colombiano, que planteaba ideas y propuestas diferentes a las de los partidos tradicionales y buscaba representar, entre otros sectores, a trabajadores y campesinos. Su influencia política era menor frente al poder que concentraban los partidos tradicionales.</p>
+<span class="pn" aria-label="Problema de la columna 2"><i>2</i></span><br><button class="mini" data-pill="2">Ver qué responde el Acuerdo</button></div></details></div></div>
+
+<div class="per"><div class="when"><b>1946–1974</b></div>
+<div class="cell"><details class="stop" id="s-c3" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · 1946–1974</small>De las autodefensas campesinas a las guerrillas</summary><div class="body">
+<p>En diferentes regiones rurales existían grupos de autodefensa campesina y también guerrillas liberales. Algunos grupos recibieron influencia de ideas comunistas, mientras que otros tenían diferentes motivaciones y formas de organización. Los conflictos por la tierra, la violencia política, la represión y las dificultades para participar en la política contribuyeron al surgimiento y fortalecimiento de organizaciones armadas. Durante el Frente Nacional aparecieron guerrillas como las FARC, el ELN y el EPL.</p>
+<p class="src">Fuente: Señal Memoria.<sup>[<a href="#f20">20</a>]</sup></p>
+<span class="pn" aria-label="Problema de la columna 3"><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details>
+<details class="stop" id="s-cmq" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · Años 60 · del boceto del equipo</small>Marquetalia y las FARC</summary><div class="body">
+<p>En ese campo sin Estado nace la «República Independiente de Marquetalia» y, con ella, la guerrilla de las FARC-EP: el campo empieza a hacerse sentir en la política, pero con armas.<sup>[<a href="#f1">1</a>]</sup></p>
+<p><b>Problema:</b> las diferencias políticas se resolvían con armas.</p><span class="pn" aria-label="Problema de la columna 3"><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details></div>
+<div class="cell"><details class="stop" id="s-u3" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>En la ciudad · 1946–1974</small>La Violencia y el Frente Nacional</summary><div class="body">
+<p>En 1948, el asesinato de Jorge Eliécer Gaitán intensificó un periodo de violencia política conocido como La Violencia, en el que liberales y conservadores se persiguieron y enfrentaron en diferentes regiones del país.</p>
+<p>Para intentar detener los enfrentamientos entre ambos partidos, se creó el Frente Nacional, un acuerdo que estuvo vigente entre 1958 y 1974. Liberales y conservadores decidieron alternarse la Presidencia cada cuatro años y repartirse por igual los cargos públicos. Aunque buscaba pacificar el país, este acuerdo limitó la participación de otras fuerzas políticas y no acabó con la violencia ni con los conflictos armados.</p>
+<p class="src">Fuente: Señal Memoria.<sup>[<a href="#f20">20</a>]</sup> Más información: <a href="https://www.senalmemoria.co/articulos/que-fue-el-frente-nacional" target="_blank" rel="noopener noreferrer">Frente Nacional</a> (se abre en pestaña nueva).</p>
+<span class="pn" aria-label="Problema de la columna 2"><i>2</i></span><br><button class="mini" data-pill="2">Ver qué responde el Acuerdo</button></div></details></div></div>
+
+<div class="per"><div class="when"><b>1982–1986</b></div>
+<div class="cell"><details class="stop" id="s-c4" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · 1982–1986</small>Unión Patriótica (UP)</summary><div class="body">
+<p>Durante los acercamientos de paz de los años ochenta se abrió un camino para que sectores relacionados con la izquierda participaran en la política por vías legales. En este contexto surgió la Unión Patriótica, un movimiento político cuyos integrantes, según el Informe Final de la Comisión de la Verdad, fueron víctimas de persecución y exterminio. Esta violencia dejó una profunda huella y aumentó la desconfianza frente a las garantías que podía ofrecer el Estado durante futuros procesos de paz.<sup>[<a href="#f21">21</a>]</sup></p>
+<p>La JEP estableció que entre 1984 y 2016 hubo 5.733 víctimas de la UP entre asesinadas y desaparecidas.<sup>[<a href="#f13">13</a>]</sup></p>
+<span class="pn" aria-label="Problemas de las columnas 2 y 3"><i>2</i><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details></div>
+<div class="cell"><details class="stop" id="s-u4" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>En la ciudad · 1982–1986</small>Belisario Betancur y los primeros acercamientos de paz</summary><div class="body">
+<p>En 1982, Belisario Betancur llegó a la Presidencia y promovió conversaciones con las guerrillas, especialmente con las FARC. En 1984 se acordó una tregua y un cese al fuego con este grupo. Era un intento por detener los enfrentamientos y abrir espacios de participación política. Sin embargo, el acuerdo no logró convertirse en una paz duradera. La violencia contra integrantes de la Unión Patriótica y el fracaso de la tregua aumentarían la desconfianza entre las partes.</p>
+<p class="src">Fuente: Informe Final de la Comisión de la Verdad.<sup>[<a href="#f21">21</a>]</sup></p>
+<span class="pn" aria-label="Problema de la columna 3"><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details></div></div>
+
+<div class="per"><div class="when"><b>Décadas siguientes</b></div>
+<div class="cell"><details class="stop" id="s-cnar" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · Décadas siguientes · del boceto del equipo</small>Las FARC y el narcotráfico</summary><div class="body">
+<p>Con el tiempo, las FARC se financian con el narcotráfico y recurren al reclutamiento forzado. Las economías ilegales se mezclan con el campo.<sup>[<a href="#f1">1</a>]</sup></p>
+<p><b>Problema:</b> el narcotráfico en el campo.</p><span class="pn" aria-label="Problema de la columna 4"><i>4</i></span><br><button class="mini" data-pill="4">Ver qué responde el Acuerdo</button></div></details></div>
+<div class="cell"></div></div>
+
+<div class="per"><div class="when"><b>1998–2002</b></div>
+<div class="cell"><details class="stop" id="s-c5" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · 1998–2002</small>Escalada del conflicto: disputa por el territorio y desplazamiento</summary><div class="body">
+<p>Con el paso de los años, el conflicto armado se intensificó en diferentes regiones. Las FARC aumentaron sus ataques a poblaciones y estaciones de Policía, mientras que los grupos paramilitares expandieron su presencia y disputaron el control de distintos territorios. La población civil quedó atrapada en medio de esta confrontación. Las amenazas, asesinatos y masacres obligaron a miles de familias a abandonar sus casas, sus tierras y sus comunidades para buscar seguridad en otros lugares. A este fenómeno se le conoce como desplazamiento forzado: no se trata de una mudanza voluntaria, sino de personas que deben abandonar sus hogares por causa de la violencia.</p>
+<p class="src">Fuente: Informe Final de la Comisión de la Verdad.<sup>[<a href="#f21">21</a>]</sup> Más información: <a href="https://www.comisiondelaverdad.co/el-exodo" target="_blank" rel="noopener noreferrer">El éxodo</a> (se abre en pestaña nueva).</p>
+<span class="pn" aria-label="Problema de la columna 5"><i>5</i></span><br><button class="mini" data-pill="5">Ver qué responde el Acuerdo</button></div></details></div>
+<div class="cell"><details class="stop" id="s-u5" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>En la ciudad · 1998–2002</small>Andrés Pastrana, el Caguán y la Silla Vacía</summary><div class="body">
+<p>Llegó un nuevo presidente: Andrés Pastrana, quien intentó negociar nuevamente con las FARC para poner fin al conflicto. Como parte del proceso, el Gobierno estableció una zona de distensión en cinco municipios, donde se desarrollarían las conversaciones de paz.</p>
+<p>Sin embargo, el inicio de los diálogos quedó marcado por la Silla Vacía: Manuel Marulanda, máximo jefe de las FARC, no asistió al acto de instalación de las conversaciones y dejó vacía la silla que estaba destinada para él. Este hecho se convirtió en un símbolo de la desconfianza que existía entre las partes desde el comienzo.</p>
+<p>Aunque las conversaciones continuaron, la guerra no se detuvo. Hubo desacuerdos, secuestros, ataques y dificultades para llegar a compromisos. Finalmente, el 21 de febrero de 2002, Pastrana anunció la terminación del proceso de paz.</p>
+<p class="src">Fuente: Informe Final de la Comisión de la Verdad.<sup>[<a href="#f21">21</a>]</sup> Más información: <a href="https://www.comisiondelaverdad.co/el-caguan" target="_blank" rel="noopener noreferrer">El Caguán</a> (se abre en pestaña nueva).</p>
+<span class="pn" aria-label="Problema de la columna 3"><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details></div></div>
+
+<div class="per"><div class="when"><b>2002–2010</b></div>
+<div class="cell"><details class="stop" id="s-c6" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · 2002–2010</small>Plan Patriota y la intensificación de la guerra</summary><div class="body">
+<p>Después de la ruptura de los diálogos del Caguán, el Gobierno de Álvaro Uribe fortaleció la estrategia militar contra las guerrillas. Durante su mandato se desarrolló el Plan Patriota, una ofensiva militar que buscaba debilitar a las FARC y recuperar el control de diferentes territorios, especialmente en el sur y el oriente del país.</p>
+<p>Pero la intensificación de los enfrentamientos también tuvo consecuencias para las comunidades rurales. Muchas familias quedaron atrapadas entre los combates, sufrieron restricciones para movilizarse y acceder a alimentos, o tuvieron que abandonar sus hogares. También aumentaron problemas como el reclutamiento de menores y las víctimas de minas antipersona.</p>
+<p class="src">Fuente: Informe Final de la Comisión de la Verdad.<sup>[<a href="#f21">21</a>]</sup> Más información: <a href="https://www.comisiondelaverdad.co/plan-patriota" target="_blank" rel="noopener noreferrer">Plan Patriota</a> (se abre en pestaña nueva).</p>
+<span class="pn" aria-label="Problema de la columna 5"><i>5</i></span><br><button class="mini" data-pill="5">Ver qué responde el Acuerdo</button></div></details></div>
+<div class="cell"><details class="stop" id="s-u6" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>En la ciudad · 2002–2010</small>Álvaro Uribe y la Seguridad Democrática</summary><div class="body">
+<p>En 2002, Álvaro Uribe llegó a la Presidencia con una política de gobierno conocida como Seguridad Democrática, que priorizó el fortalecimiento de la Fuerza Pública y la recuperación del control territorial. Esto significó una intensificación de las operaciones militares contra las guerrillas.</p>
+<p>Pero la guerra no ocurría únicamente en el campo. En octubre de 2002, por ejemplo, se desarrolló la Operación Orión en la Comuna 13 de Medellín, una intervención militar que dejó graves cuestionamientos por el uso de la fuerza y sus efectos sobre la población civil. La Comisión de la Verdad, en su Informe Final, recogió testimonios sobre la relación entre integrantes de la Fuerza Pública y grupos paramilitares durante esta operación (son testimonios que recogió la Comisión, no una sentencia).</p>
+<p class="src">Fuente: Informe Final de la Comisión de la Verdad.<sup>[<a href="#f21">21</a>]</sup></p>
+<span class="pn" aria-label="Problema de la columna 5"><i>5</i></span><br><button class="mini" data-pill="5">Ver qué responde el Acuerdo</button></div></details></div></div>
+
+<div class="per"><div class="when"><b>2010–2016</b></div>
+<div class="cell"><details class="stop" id="s-c7" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>En el campo · 2010–2016</small>Las víctimas y las comunidades rurales en el proceso de paz</summary><div class="body">
+<p>Durante los diálogos entre el Gobierno y las FARC, las comunidades de las regiones afectadas por el conflicto comenzaron a tener un papel importante en las conversaciones. Víctimas, organizaciones sociales y habitantes de diferentes territorios participaron con propuestas y testimonios. La intención era que el acuerdo no se limitara a terminar los enfrentamientos, sino que también reconociera el sufrimiento de las personas afectadas y buscara responder a sus derechos.</p>
+<p class="src">Fuente: Informe Final de la Comisión de la Verdad.<sup>[<a href="#f21">21</a>]</sup></p>
+<span class="pn" aria-label="Problema de la columna 5"><i>5</i></span><br><button class="mini" data-pill="5">Ver qué responde el Acuerdo</button></div></details></div>
+<div class="cell"><details class="stop" id="s-u7" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>En la ciudad · 2010–2016</small>Juan Manuel Santos y los diálogos de La Habana</summary><div class="body">
+<p>En 2010 llegó a la Presidencia Juan Manuel Santos, quien marcó distancia frente al gobierno anterior y abrió un nuevo camino para buscar una salida negociada al conflicto. En 2012 comenzaron conversaciones exploratorias con las FARC en La Habana, Cuba. Meses después se anunció el inicio formal de las negociaciones.</p>
+<p>A diferencia de lo ocurrido en el Caguán, esta vez los diálogos se desarrollaron fuera de Colombia y no se estableció una zona desmilitarizada. Las conversaciones continuaron a pesar de las dificultades y los enfrentamientos que todavía ocurrían en el país.</p>
+<p>En 2015 se anunció un acuerdo para garantizar los derechos de las víctimas a la verdad, la justicia, la reparación y la no repetición. De allí surgió el Sistema Integral de Verdad, Justicia, Reparación y No Repetición, conformado, entre otras instituciones, por la JEP, la Comisión de la Verdad y la Unidad de Búsqueda de Personas dadas por Desaparecidas. Finalmente, el proceso desembocó en el Acuerdo Final de Paz de 2016.</p>
+<p class="src">Fuente: Informe Final de la Comisión de la Verdad.<sup>[<a href="#f21">21</a>]</sup> Más información: <a href="https://www.comisiondelaverdad.co/dialogos-de-la-habana" target="_blank" rel="noopener noreferrer">Diálogos de La Habana</a> (se abre en pestaña nueva).</p>
+<span class="pn" aria-label="Problema de la columna 3"><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details></div></div>
 </div>
-<div class="lane" style="--c:var(--na);--ct:var(--na-t)"><h3>En la ciudad</h3>
-<details class="stop" id="s-u1" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>1948</small>La Violencia</summary><div class="body">
-<p>Asesinan a Jorge Eliécer Gaitán y explota la violencia interna entre los partidos Liberal y Conservador.</p>
-<p><b>Problema:</b> no había diversidad política ni derechos para participar y opinar distinto.</p><span class="pn" aria-label="Problema de la columna 2"><i>2</i></span><br><button class="mini" data-pill="2">Ver qué responde el Acuerdo</button></div></details>
-<details class="stop" id="s-u2" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>1958 – 1974</small>El Frente Nacional</summary><div class="body">
-<p>Liberales y conservadores acuerdan turnarse el poder para frenar la violencia. La paz entre ellos deja afuera a otras voces políticas.</p>
-<p><b>Problema:</b> poca diversidad política.</p><span class="pn" aria-label="Problema de la columna 2"><i>2</i></span><br><button class="mini" data-pill="2">Ver qué responde el Acuerdo</button></div></details>
-<details class="stop" id="s-u3" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>Años 80</small>Belisario y la Unión Patriótica</summary><div class="body">
-<p>Un proceso de paz con el gobierno de Belisario Betancur abre la puerta a la Unión Patriótica, un partido que nace de ese proceso. Sus integrantes sufren asesinatos sistemáticos. La JEP estableció que entre 1984 y 2016 hubo 5.733 víctimas entre asesinadas y desaparecidas.<sup>[<a href="#f13">13</a>]</sup></p>
-<p><b>Problema:</b> las diferencias políticas se resolvían con armas.</p><span class="pn" aria-label="Problemas de las columnas 2 y 3"><i>2</i><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details>
-</div></div>
 <svg class="merge" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="var(--az)" stroke-width="4" stroke-dasharray="7 6" vector-effect="non-scaling-stroke"><path d="M22 0 C22 40 40 40 48 70" vector-effect="non-scaling-stroke"/><path d="M78 0 C78 40 60 40 52 70" vector-effect="non-scaling-stroke"/></g></svg>
 <div class="trunk"><h3>Los dos caminos se juntan</h3>
-<details class="stop" id="s-t1" style="--kk:var(--az);--kt:var(--az-t)"><summary><small>1991</small>Nueva Constitución</summary><div class="body"><p>Una Asamblea Nacional Constituyente redacta la Constitución de Colombia. Entre sus 70 integrantes había exguerrilleros: el M-19, que había dejado las armas, obtuvo 19 puestos.<sup>[<a href="#f14">14</a>]</sup> Se abre la puerta a más participación política.</p></div></details>
-<details class="stop" id="s-t2" style="--kk:var(--az);--kt:var(--az-t)"><summary><small>1999 – 2001</small>La silla vacía</summary><div class="body"><p>El gobierno de Andrés Pastrana negocia con las FARC. El proceso se recuerda por la «silla vacía» y termina sin acuerdo.</p></div></details>
-<details class="stop" id="s-t3" style="--kk:var(--az);--kt:var(--az-t)"><summary><small>Después</small>Escalada del conflicto</summary><div class="body"><p>El conflicto se intensifica. Las FARC pasan a ser tratadas como una organización terrorista, y el narcotráfico y el campo siguen entrelazados.</p><span class="pn" aria-label="Problema de la columna 4"><i>4</i></span><br><button class="mini" data-pill="4">Ver qué responde el Acuerdo</button></div></details>
+<details class="stop" id="s-t1" style="--kk:var(--az);--kt:var(--az-t)"><summary><small>1991 · del boceto del equipo</small>Nueva Constitución</summary><div class="body"><p>Una Asamblea Nacional Constituyente redacta la Constitución de Colombia. Entre sus 70 integrantes había exguerrilleros: el M-19, que había dejado las armas, obtuvo 19 puestos.<sup>[<a href="#f14">14</a>]</sup> Se abre la puerta a más participación política.</p></div></details>
 <p class="dest">Y de ahí se llega al Acuerdo de Paz ⬇</p></div>
 <a class="next" href="#acuerdo">Siguiente parada: el Acuerdo de Paz 🚌</a></section>
 
@@ -298,7 +376,11 @@ footer a{color:var(--az-t)}
 <li id="f15">[15] Registraduría Nacional (2022), <em>ABC de las curules de las Circunscripciones Transitorias Especiales de Paz</em>: <a href="https://registraduria.gov.co/IMG/pdf/20220207_abece-curules-citrep.pdf" target="_blank" rel="noopener noreferrer">registraduria.gov.co</a>.</li>
 <li id="f16">[16] Vanguardia (2 de octubre de 2026), «10 años del No al plebiscito por la paz»: <a href="https://www.vanguardia.com/colombia/2026/10/02/10-anos-del-no-al-plebiscito-por-la-paz-que-paso-despues-con-el-acuerdo-firmado-con-las-farc/" target="_blank" rel="noopener noreferrer">vanguardia.com</a>.</li>
 <li id="f17">[17] El Heraldo (16 de septiembre de 2025), titular «Sentencia de la JEP contra exFARC desata opiniones políticas divididas»: <a href="https://www.elheraldo.co/colombia/2025/09/16/sentencia-de-la-jep-contra-exfarc-desata-opiniones-politicas-divididas/" target="_blank" rel="noopener noreferrer">elheraldo.co</a>.</li>
-<li id="f18">[18] Sitios de las entidades de la sección de cierre: son recursos para explorar, no respaldo de los datos.</li></ol>
+<li id="f18">[18] Sitios de las entidades de la sección de cierre: son recursos para explorar, no respaldo de los datos.</li>
+<li id="f19">[19] Radio Nacional de Colombia, «Guerra de los Mil Días: siete puntos clave para entender este hecho»: <a href="https://www.radionacional.co/cultura/historia-colombiana/guerra-de-los-mil-dias-siete-puntos-clave-para-entender-este-hecho" target="_blank" rel="noopener noreferrer">radionacional.co</a> (se abre en pestaña nueva).</li>
+<li id="f20">[20] Señal Memoria, «¿Qué fue el Frente Nacional?»: <a href="https://www.senalmemoria.co/articulos/que-fue-el-frente-nacional" target="_blank" rel="noopener noreferrer">senalmemoria.co</a> (se abre en pestaña nueva).</li>
+<li id="f21">[21] Comisión de la Verdad, <em>Informe Final</em> (2022). Se citan las páginas de la entidad enlazadas en la línea de tiempo: <a href="https://www.comisiondelaverdad.co/el-exodo" target="_blank" rel="noopener noreferrer">El éxodo</a>, <a href="https://www.comisiondelaverdad.co/el-caguan" target="_blank" rel="noopener noreferrer">El Caguán</a>, <a href="https://www.comisiondelaverdad.co/plan-patriota" target="_blank" rel="noopener noreferrer">Plan Patriota</a> y <a href="https://www.comisiondelaverdad.co/dialogos-de-la-habana" target="_blank" rel="noopener noreferrer">Diálogos de La Habana</a> (se abren en pestaña nueva). Números de página del Informe: por completar por el equipo.</li>
+</ol>
 <p class="note">Algunas cifras vienen de prensa y no del texto original de cada entidad. Conviene contrastarlas con las fuentes primarias antes de citarlas en un trabajo.</p></footer>
 
 
@@ -320,23 +402,23 @@ const PIL=[
 {n:1,l:'Campo',t:'Reforma Rural Integral: el campo',k:'--ve',kt:'--ve-t',pt:'Reforma Rural Integral',
  s:'Busca llevar tierras, vías, salud, agua y educación a los campesinos en las zonas más olvidadas, para que vivir en el campo no sea sinónimo de pobreza y abandono.',
  pts:['Fondo de Tierras: tres millones de hectáreas en doce años para campesinos sin tierra o con muy poca.'+c(2),'Formalizar la propiedad de millones de hectáreas que hoy no tienen títulos.','Programas de desarrollo con enfoque territorial (PDET) en las regiones más golpeadas: vías, salud, educación y acceso al agua.'],
- resp:['s-c1'],hoy:'El Instituto Kroc encontró, en su informe de 2022, que la reforma rural y la participación política eran los puntos con menor avance.'+c(11),goto:null},
+ resp:['s-c1','s-c2'],hoy:'El Instituto Kroc encontró, en su informe de 2022, que la reforma rural y la participación política eran los puntos con menor avance.'+c(11),goto:null},
 {n:2,l:'Participación',t:'Participación política: la voz',k:'--na',kt:'--na-t',pt:'Participación política',
  s:'Garantiza que cualquier persona, movimiento social o partido de oposición pueda defender sus ideas y hacer política sin miedo a que lo silencien con violencia, dando además voz en el Congreso a las regiones más golpeadas por la guerra.',
  pts:['Garantías para que la oposición y los movimientos sociales puedan participar sin ser perseguidos.','El partido de los excombatientes tiene un espacio garantizado en el Congreso por dos periodos.','16 Circunscripciones Transitorias Especiales de Paz: curules para las zonas más golpeadas por el conflicto. Se materializaron con el Acto Legislativo 02 de 2021, para los periodos 2022–2026 y 2026–2030.'+c(15)],
- resp:['s-u1','s-u2','s-u3'],hoy:'Responde a la falta de espacio para pensar distinto y a lo que le pasó a la Unión Patriótica.',goto:null},
+ resp:['s-u2','s-u3','s-c4'],hoy:'Responde a la falta de espacio para pensar distinto y a lo que le pasó a la Unión Patriótica.',goto:null},
 {n:3,l:'Fin del conflicto',t:'Fin del conflicto: las armas',k:'--ro',kt:'--ro-t',pt:'Fin del conflicto',
  s:'Fue el compromiso para silenciar los fusiles definitivamente. Las FARC-EP entregaron sus armas a la ONU y pasaron a la vida civil para hacer política con palabras y sin violencia, a cambio de garantías para su seguridad y reincorporación.',
  pts:['Cese al fuego y de hostilidades bilateral y definitivo, y dejación de las armas con verificación de la ONU.','Las FARC se concentraron en 20 zonas y 7 puntos transitorios de normalización.'+c(3),'Reincorporación a la vida civil: económica, social y política. Las FARC-EP pasaron a ser un partido político.','Garantías de seguridad para quienes dejaron las armas y para la población.'],
- resp:['s-c2','s-u3'],hoy:'La seguridad de los firmantes sigue siendo uno de los retos de hoy.',goto:['retos','Ver los retos']},
+ resp:['s-c3','s-cmq','s-c4','s-u4','s-u5','s-u7'],hoy:'La seguridad de los firmantes sigue siendo uno de los retos de hoy.',goto:['retos','Ver los retos']},
 {n:4,l:'Narcotráfico',t:'Solución a las drogas ilícitas: el narcotráfico',k:'--az',kt:'--az-t',pt:'Solución al problema de las drogas ilícitas',
  s:'Propone debilitar el negocio del narcotráfico sin tratar a los campesinos como criminales: apoya a las familias rurales para cambiar los cultivos de coca por productos legales, trata el consumo como un asunto de salud pública y persigue a las mafias.',
  pts:['Programa Nacional Integral de Sustitución de Cultivos de Uso Ilícito: las familias campesinas se comprometen a sustituir y reciben apoyo.','El consumo se trata como un tema de salud pública.','Persecución a las redes criminales que mueven el negocio.'],
- resp:['s-c3','s-t3'],hoy:'Responde a la relación entre narcotráfico, conflicto y campo.',goto:null},
+ resp:['s-cnar'],hoy:'Responde a la relación entre narcotráfico, conflicto y campo.',goto:null},
 {n:5,l:'Víctimas',t:'Acuerdo sobre las víctimas: verdad y justicia',k:'--ro',kt:'--ro-t',pt:'Víctimas: Verdad, Justicia, Reparación y No Repetición',
  s:'Es el corazón del Acuerdo. Pone en el centro a los millones de personas que sufrieron la guerra para que se sepa la verdad de lo ocurrido, se busque a los desaparecidos, los responsables reparen el daño causado y la historia no se repita.',
  pts:['Crea el Sistema Integral de Verdad, Justicia, Reparación y No Repetición: una Comisión de la Verdad, una Unidad de Búsqueda y la JEP.'+c(12),'Pone a las víctimas en el centro: saber qué pasó, que haya justicia, que se repare el daño y que no se repita.','La justicia busca ser restaurativa: las sanciones dependen de lo que cada persona aporte a las víctimas.'],
- resp:[],hoy:'Responde a todo el daño que dejó el conflicto, en el campo y en la ciudad.',goto:['mecanismos','Seguir el río de los mecanismos']}
+ resp:['s-c5','s-c6','s-c7','s-u6'],hoy:'Responde a todo el daño que dejó el conflicto, en el campo y en la ciudad.',goto:['mecanismos','Seguir el río de los mecanismos']}
 ];
 
 const pp=$('#pp'),pw=$('#pillars');
@@ -491,8 +573,8 @@ const RULES=[
  a:[`<b>Punto 4 · Narcotráfico (drogas ilícitas).</b> Propone debilitar el negocio sin tratar a los campesinos como criminales: apoya a las familias para sustituir cultivos de coca por productos legales, trata el consumo como tema de salud pública y persigue a las redes criminales. ${go('acuerdo','Ver la columna 4')}`]},
 {k:'victimas',re:/\b(victimas|verdad|reparacion|no repeticion|punto 5|quinto punto|columna 5|pilar 5|corazon del acuerdo)\b/,
  a:[`<b>Punto 5 · Víctimas (verdad y justicia).</b> Es el corazón del Acuerdo: pone en el centro a quienes sufrieron la guerra para que se sepa la verdad, se busque a los desaparecidos, se repare el daño y no se repita. Para lograrlo crea el Sistema Integral para la Paz. ${go('mecanismos','Ver los mecanismos')}`]},
-{k:'historia',re:/\b(historia|raices|origen|campo y ciudad|la violencia|gaitan|frente nacional|marquetalia|farc|colonizacion|mil dias|constitucion|1991|caguan|silla vacia|pastrana|belisario|escalada|terrorismo|por que (empezo|paso|hubo))\b/,
- a:[`En la parada 1 hay dos caminos que se juntan. <b>En el campo</b>: colonización interna sin presencia del Estado, Marquetalia y las FARC, y el narcotráfico. <b>En la ciudad</b>: La Violencia tras el asesinato de Gaitán, el Frente Nacional y la Unión Patriótica. Se juntan en la Constitución de 1991, la «silla vacía» (1999–2001) y la escalada del conflicto. ${go('historia','Ir a la historia')}`]},
+{k:'historia',re:/\b(historia|raices|origen|campo y ciudad|la violencia|gaitan|frente nacional|marquetalia|farc|colonizacion|mil dias|constitucion|1991|caguan|silla vacia|pastrana|belisario|escalada|terrorismo|uribe|plan patriota|orion|desplazamiento|santos|autodefensas|union patriotica|por que (empezo|paso|hubo))\b/,
+ a:[`En la parada 1 hay una línea de tiempo con siete periodos (1899–1930, década de 1930, 1946–1974, 1982–1986, 1998–2002, 2002–2010 y 2010–2016). En cada uno, una tarjeta muestra lo que pasaba <b>en el campo</b> y otra lo que pasaba <b>en la ciudad</b>; además hay tarjetas del boceto del equipo sobre Marquetalia y las FARC, y sobre las FARC y el narcotráfico. Los dos caminos se juntan en la Constitución de 1991 y llegan al Acuerdo. ${ref(21)} ${go('historia','Ir a la historia')}`]},
 {k:'acuerdo',re:/\b(acuerdo|acuerdo de paz|acuerdo final|2016|la habana|habana|cinco puntos|seis puntos|puntos|columnas|pilares|firma|firmaron)\b/,
  a:[`El Acuerdo Final se firmó el 24 de noviembre de 2016 entre el Gobierno y las FARC-EP, tras negociar en La Habana y ajustarlo después del plebiscito.${ref(16)} En la página se explica con cinco columnas: <b>1</b> campo, <b>2</b> participación política, <b>3</b> fin del conflicto, <b>4</b> narcotráfico y <b>5</b> víctimas. El texto oficial tiene seis puntos: el sexto, la implementación y verificación, sostiene a los demás.${ref(2)} ${go('acuerdo','Ir al Acuerdo')}`]},
 {k:'quien',re:/\b(quien eres|que eres|eres (una )?(ia|robot|bot|persona|humano)|eres real|inteligencia artificial|como te llamas|tu nombre|chatgpt|claude)\b/,
@@ -520,7 +602,7 @@ setMode(mode);
 /* La respuesta de la IA es texto no confiable: se escapa y solo se permiten negrita, saltos de línea y citas [n] */
 const fmt=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
  .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')
- .replace(/\[(\d{1,2}(?:\s*,\s*\d{1,2})*)\]/g,(m,l)=>{const ns=l.split(/\s*,\s*/).map(Number);return ns.every(n=>n>=1&&n<=18)?ns.map(n=>`<sup>[<a href="#f${n}">${n}</a>]</sup>`).join(''):m})
+ .replace(/\[(\d{1,2}(?:\s*,\s*\d{1,2})*)\]/g,(m,l)=>{const ns=l.split(/\s*,\s*/).map(Number);return ns.every(n=>n>=1&&n<=21)?ns.map(n=>`<sup>[<a href="#f${n}">${n}</a>]</sup>`).join(''):m})
  .replace(/\n/g,'<br>');
 async function viaIA(){
  const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),25000);
