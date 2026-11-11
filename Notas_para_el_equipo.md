@@ -31,3 +31,8 @@ Marquetalia y las FARC; las FARC y el narcotráfico (sostiene la columna 4); cif
 - Tarjetas de la década de 1930 sin fuente en el PDF.
 - Fuentes nuevas: [19] Radio Nacional, [20] Señal Memoria, [21] Informe Final. El chat (`fmt`) ahora acepta citas hasta [21].
 - Enlaces «Más información» comprobados (HTTP 200) sin `?utm_source=chatgpt.com`.
+
+## Cambio: 1991 en su año y meta en 2016
+- La Constitución de 1991 (con su cita [14]) pasó a una tarjeta que ocupa ambos carriles, entre 1982–1986/«Décadas siguientes» y 1998–2002. Se eliminó el tronco «Los dos caminos se juntan».
+- El recorrido termina en el módulo «2016 · Acuerdo de Paz» (La Habana, plebiscito del 2 de octubre con victoria del «No», firma del 24 de noviembre [16][2]), al que llega el embudo; su botón lleva a #acuerdo y reemplaza al anterior.
+- Chat actualizado (regla 'historia' y PARADA 1 de `api/_kb.js`) con el nuevo orden.
