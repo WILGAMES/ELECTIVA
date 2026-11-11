@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Recorrido interactivo para jóvenes: de las raíces del conflicto al Acuerdo de Paz de 2016, el Sistema Integral para la Paz y los retos que enfrenta hoy.">
+<title>Camino hacia la paz</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700&display=swap">
+<style>
+:root{--am:#FFD23F;--az:#0B3C8C;--ro:#D62839;--ve:#1B7F4C;--na:#E8710A;--ink:#1d2433;--paper:#FFFDF4;--card:#fff;--line:#e5dcc0;--mute:#5b6070;
+--ro-t:#D62839;--az-t:#0B3C8C;--ve-t:#1B7F4C;--na-t:#B9500A;--mute-t:#5b6070;--am-t:#7a5b00;--river:#9fd0f5;--soft:rgba(127,127,127,.09);
+--h:'Fredoka','Trebuchet MS',sans-serif;--b:'Nunito',system-ui,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#141a2b;--card:#1f2740;--ink:#f4f1e6;--line:#34406a;--mute:#b4bad0;--ro-t:#ff8a98;--az-t:#8fb4ff;--ve-t:#40c27f;--na-t:#ffa35c;--mute-t:#b4bad0;--am-t:#ffd23f;--river:#2a5b8f}}
+:root[data-theme=dark]{--paper:#141a2b;--card:#1f2740;--ink:#f4f1e6;--line:#34406a;--mute:#b4bad0;--ro-t:#ff8a98;--az-t:#8fb4ff;--ve-t:#40c27f;--na-t:#ffa35c;--mute-t:#b4bad0;--am-t:#ffd23f;--river:#2a5b8f}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--b)}
+h1,h2,h3{font-family:var(--h);line-height:1.1;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--az-t)}
+:focus-visible{outline:3px solid var(--na-t);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;background:var(--am);color:#1d2433;padding:8px 14px;border-radius:8px;font:700 15px var(--h);z-index:99;text-decoration:none}
+.skip:focus{top:8px}
+.mochila{height:20px;background:linear-gradient(135deg,var(--ro) 25%,transparent 25%) -10px 0/20px 20px,linear-gradient(225deg,var(--ro) 25%,transparent 25%) -10px 0/20px 20px,linear-gradient(315deg,var(--am) 25%,transparent 25%) 0 0/20px 20px,linear-gradient(45deg,var(--am) 25%,transparent 25%) 0 0/20px 20px var(--az);animation:slide 6s linear infinite}
+@keyframes slide{to{background-position:10px 0,10px 0,20px 0,20px 0}}
+.hero{background:var(--az);color:#fff;position:relative;overflow:hidden;padding:64px 22px 56px;text-align:center}
+.hero .in{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.hero h1{font-size:clamp(40px,9vw,84px);color:var(--am);font-weight:700;text-shadow:3px 3px 0 var(--ro)}
+.hero h1 span{display:inline-block;animation:pop .7s both}
+.hero h1 span:nth-child(2){animation-delay:.15s}.hero h1 span:nth-child(3){animation-delay:.3s}
+@keyframes pop{from{transform:translateY(40px) scale(.6);opacity:0}}
+.hero p{font-size:19px;margin:20px auto;max-width:34em}
+.go{display:inline-block;background:var(--am);color:var(--ink);font:700 18px var(--h);padding:12px 26px;border-radius:99px;text-decoration:none;box-shadow:0 5px 0 var(--ro);transition:transform .15s}
+.go:hover{transform:translateY(-3px) rotate(-2deg)}
+.blob{position:absolute;border-radius:50%;opacity:.9;animation:float 7s ease-in-out infinite}
+.b1{width:90px;height:90px;background:var(--ro);left:6%;top:14%}.b2{width:60px;height:60px;background:var(--am);right:9%;top:22%;animation-delay:-2s}.b3{width:120px;height:120px;background:var(--ve);right:14%;bottom:-30px;animation-delay:-4s}.b4{width:46px;height:46px;background:var(--na);left:14%;bottom:12%;animation-delay:-1s}
+@keyframes float{50%{transform:translateY(-22px) rotate(12deg)}}
+#road{position:sticky;top:0;z-index:9;background:var(--paper);border-bottom:3px solid var(--am);padding:6px 16px 8px}
+#road ol{list-style:none;margin:0 auto;padding:0;max-width:900px;display:flex;justify-content:space-between;gap:4px;font:700 13px var(--h);overflow-x:auto;white-space:nowrap}
+#road a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:8px;display:inline-block}
+#road a[aria-current]{background:var(--am);color:#1d2433}
+.trk{max-width:900px;margin:4px auto 0;height:8px;border-radius:9px;background:repeating-linear-gradient(90deg,var(--line) 0 14px,transparent 14px 24px);position:relative}
+#bus{position:absolute;top:-16px;left:0;font-size:24px;transform:translateX(-50%);transition:left .25s}
+main{max-width:900px;margin:0 auto;padding:10px 18px 40px}
+section{margin:44px 0;padding:26px 22px 28px;border-radius:22px;background:var(--card);border:3px solid var(--c);box-shadow:8px 8px 0 var(--c)}
+section>h2{font-size:clamp(28px,5vw,40px);color:var(--ct,var(--c));margin-bottom:8px}
+.lead{margin:0 0 18px;max-width:40em}
+.note{font-size:14px;color:var(--mute);margin:10px 0 0}
+.warn{margin:0 0 14px;padding:10px 14px;border-radius:12px;border:2px dashed var(--am-t);font-size:15px}
+sup{font-size:.7em;line-height:0}sup a{text-decoration:none;font-weight:700}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:16px}
+.cols div{background:var(--soft);border-radius:14px;padding:14px 16px}
+.cols b{font:600 18px var(--h);display:block;margin-bottom:4px}
+.ra{margin:0;padding-left:20px}.ra li{margin-bottom:6px}
+.next{display:block;width:fit-content;margin:26px auto 0;background:var(--c);color:var(--on,#fff);font:700 18px var(--h);padding:12px 26px;border-radius:99px;text-decoration:none;box-shadow:0 5px 0 var(--am);transition:transform .15s}
+.next:hover{transform:translateY(-3px) rotate(-2deg)}
+.panel{background:var(--soft);border-radius:14px;border-left:8px solid var(--k,var(--c));padding:16px 18px;animation:in .3s;margin-top:14px}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.panel h3{font-size:23px;margin-bottom:6px}.panel p{margin:0 0 8px}
+.panel ul{margin:0 0 8px;padding-left:20px}.panel li{margin-bottom:5px}
+.badge{display:inline-block;font:700 13px var(--h);padding:2px 10px;border-radius:99px;border:2px solid var(--kt,var(--k));color:var(--kt,var(--k));margin:0 6px 6px 0}
+.tag{font:700 13px var(--h);color:var(--kt,var(--k,var(--c)));display:block;margin:10px 0 2px}
+.btnl,.mini{display:inline-block;margin:6px 6px 0 0;padding:8px 15px;border-radius:99px;background:var(--k,var(--c));color:#fff;font:600 15px var(--h);text-decoration:none;border:0}
+.btnl.dk,.mini.dk{color:#1d2433}
+.mini{background:transparent;border:2px solid var(--kt,var(--k,var(--c)));color:var(--kt,var(--k,var(--c)));padding:5px 12px;font-size:14px}
+.mini:hover,.btnl:hover{filter:brightness(1.12)}
+.hint{font:600 15px var(--h);color:var(--mute-t);margin:0 0 10px}
+
+/* ---- Historia: carriles ---- */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative}
+.lane{border-left:5px double var(--c);border-right:5px double var(--c);border-radius:6px;padding:0 12px 12px;background:repeating-linear-gradient(180deg,transparent 0 22px,rgba(127,127,127,.06) 22px 24px)}
+.lane h3{font-size:24px;text-align:center;padding:10px 0 8px;color:var(--ct,var(--c))}
+.stop{background:var(--card);border:3px solid var(--kk);border-radius:14px;margin:0 0 14px;box-shadow:4px 4px 0 var(--kk);position:relative}
+.stop summary{list-style:none;cursor:pointer;padding:10px 12px;font:600 16px/1.2 var(--h);display:block}
+.stop summary::-webkit-details-marker{display:none}
+.stop summary small{display:block;font:700 12px var(--b);color:var(--kt);margin-bottom:2px}
+.stop summary::after{content:"＋";position:absolute;right:10px;top:8px;font:700 18px var(--h);color:var(--kt)}
+.stop[open] summary::after{content:"－"}
+.stop .body{padding:0 12px 12px;font-size:15.5px;line-height:1.5}
+.stop .body p{margin:0 0 8px}
+.pn{display:inline-flex;gap:3px;margin-top:4px}
+.pn i{font-style:normal;width:22px;height:22px;border-radius:50%;border:2.5px solid var(--ve-t);color:var(--ve-t);font:700 12px/17px var(--h);text-align:center;background:var(--card)}
+.stop.hl{animation:pulse 1.1s 2;outline:4px solid var(--am)}
+@keyframes pulse{50%{transform:scale(1.03)}}
+.merge{display:block;width:100%;height:70px;margin:-6px 0 0}
+.trunk{max-width:520px;margin:0 auto;border-left:5px double var(--az);border-right:5px double var(--az);padding:14px 14px 0;border-radius:6px}
+.trunk>h3{text-align:center;font-size:22px;color:var(--az-t);margin-bottom:10px}
+.dest{text-align:center;margin:12px 0 0;font:600 18px var(--h);color:var(--az-t)}
+
+/* ---- Pórtico ---- */
+.pedi{position:relative;max-width:640px;margin:10px auto 0;height:96px;background:var(--az);clip-path:polygon(0 100%,50% 0,100% 100%);display:flex;align-items:flex-end;justify-content:center;color:#fff;font:700 clamp(22px,4.6vw,32px) var(--h);padding-bottom:12px}
+.what{background:var(--soft);border-radius:14px;padding:14px 18px;margin-bottom:12px;border-left:8px solid var(--az)}.what h3{font-size:22px;color:var(--az-t);margin-bottom:6px}.what p{margin:0 0 8px}
+.cornice{max-width:660px;margin:0 auto;height:14px;background:var(--am);border-radius:3px;box-shadow:0 4px 0 var(--ro)}
+.pillars{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:10px 6px 0}
+.pil{background:none;border:0;padding:0;text-align:center;font:600 13px/1.2 var(--h);color:var(--ink)}
+.shaft{display:block;height:150px;margin:0 8px 6px;border-radius:6px 6px 2px 2px;background:repeating-linear-gradient(90deg,#f3ead0 0 7px,#e0d3ab 7px 9px);border:2px solid var(--line);position:relative;transition:transform .15s,background .15s}
+:root[data-theme=dark] .shaft{background:repeating-linear-gradient(90deg,#3a4672 0 7px,#2d3860 7px 9px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .shaft{background:repeating-linear-gradient(90deg,#3a4672 0 7px,#2d3860 7px 9px)}}
+.shaft b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--card);border:4px solid var(--ve-t);color:var(--ve-t);font:700 19px/30px var(--h)}
+.pil:hover .shaft{transform:translateY(-4px)}
+.pil[aria-pressed=true] .shaft{border-color:var(--az);box-shadow:0 0 0 3px var(--am)}
+.pil[aria-pressed=true] .shaft b{background:var(--ve);color:#fff;border-color:var(--ve)}
+.base{height:12px;background:var(--line);margin:0 2px 6px;border-radius:3px}
+.pil span.l{display:block}
+@media(max-width:560px){.pil{font-size:11.5px}.shaft{margin:0 2px 6px;height:120px}.shaft b{width:30px;height:30px;font-size:15px;line-height:22px}}
+
+/* ---- Río de mecanismos ---- */
+.sign{display:block;width:fit-content;margin:0 auto 6px;background:var(--ink);color:var(--paper);font:700 17px var(--h);padding:6px 16px;border-radius:8px;border:3px solid var(--am)}
+.river{position:relative;min-height:430px;margin:10px 0}
+.river svg.bg{position:absolute;inset:0;width:100%;height:100%}
+.st{position:absolute;width:min(46%,250px);background:var(--card);border:3px solid var(--kk);border-radius:16px;box-shadow:5px 5px 0 var(--kk);padding:10px 12px;text-align:left;font:600 17px/1.2 var(--h);z-index:1;transition:transform .15s}
+.st small{display:block;font:700 12.5px var(--b);color:var(--kt);margin-top:3px}
+.st:hover{transform:translateY(-3px) rotate(-1deg)}
+.st[aria-pressed=true]{background:var(--kk);color:#fff}
+.st[aria-pressed=true] small{color:#fff}
+.st.dk[aria-pressed=true],.st.dk[aria-pressed=true] small{color:#1d2433}
+#st-jep{right:2%;top:6%}#st-ubpd{left:2%;top:38%}#st-cev{right:2%;top:70%}
+@media(max-width:560px){.st{width:62%;font-size:15px}#st-jep{right:0}#st-ubpd{left:0}#st-cev{right:0}}
+.cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 0;font-size:14px}
+.cmp div{background:var(--soft);border-radius:10px;padding:8px 10px}
+.cmp b{display:block;font:600 14px var(--h)}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}}
+
+/* ---- Retos ---- */
+#retos{background:var(--card)}
+.zone{border-radius:16px;padding:14px 14px 16px;background:repeating-linear-gradient(135deg,rgba(255,210,63,.18) 0 14px,transparent 14px 28px),var(--soft);margin-bottom:12px}
+.signs{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:10px}
+.sg{font:700 15px var(--h);padding:5px 14px;border-radius:6px;transform:rotate(-4deg);border:3px solid #1d2433;letter-spacing:1px}
+.sg.p{background:var(--ro);color:#fff}.sg.c{background:var(--am);color:#1d2433;transform:rotate(4deg)}
+.zone .ico{font-size:34px;text-align:center;flex:1}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.chip{border:3px solid var(--kt,var(--k,var(--c)));background:var(--card);border-radius:16px;padding:7px 13px;text-align:left;font:600 15px/1.2 var(--h);transition:transform .15s}
+.chip:hover{transform:translateY(-3px) rotate(-1.5deg)}
+.chip[aria-pressed=true]{background:var(--k,var(--c));color:#fff;border-color:var(--k,var(--c))}
+.chip.seen::after{content:" ✓";font-weight:700}
+.voz{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 8px}
+.voz div{background:var(--card);border-radius:10px;padding:8px 12px;font-size:15px}
+.voz b{font:600 14px var(--h);display:block}
+@media(max-width:560px){.voz{grid-template-columns:1fr}}
+
+/* ---- cierre ---- */
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:10px}
+.res a{display:block;text-decoration:none;color:var(--ink);background:var(--soft);border-radius:14px;padding:12px 14px;border-left:8px solid var(--k)}
+.res a:hover{transform:translateY(-3px)}
+.res b{font:600 17px var(--h);display:block;color:var(--kt,var(--k))}
+.res small{display:block;font:700 12px var(--b);color:var(--mute-t)}
+.big{font:700 clamp(21px,4vw,28px)/1.25 var(--h);margin:18px 0 4px}
+textarea{width:100%;min-height:96px;font:inherit;padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);margin-top:8px}
+footer{max-width:900px;margin:0 auto;padding:0 20px 50px;font-size:14px;color:var(--mute)}
+footer h2{font:600 20px var(--h);color:var(--ink);margin:14px 0 4px}
+footer ol{padding-left:0;list-style:none}footer li{margin-bottom:5px}
+footer li:target{background:rgba(255,210,63,.35);border-radius:6px}
+footer a{color:var(--az-t)}
+@media(max-width:640px){.lanes{grid-template-columns:1fr}section{padding:20px 14px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---- Asistente simulado ---- */
+#aiFab{position:fixed;right:16px;bottom:16px;z-index:30;width:60px;height:60px;border-radius:50%;border:3px solid var(--az);background:var(--am);color:#1d2433;font-size:28px;box-shadow:0 5px 0 var(--ro);display:flex;align-items:center;justify-content:center;transition:transform .15s}
+#aiFab:hover{transform:translateY(-3px) rotate(-6deg)}
+#ai{position:fixed;right:16px;bottom:88px;z-index:31;width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 120px));background:var(--card);color:var(--ink);border:3px solid var(--az);border-radius:20px;box-shadow:8px 8px 0 var(--az);display:flex;flex-direction:column;overflow:hidden}
+#ai[hidden]{display:none}
+#ai header{background:var(--az);color:#fff;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+#ai header b{font:700 17px var(--h)}#ai header small{display:block;font:700 12px var(--b);color:#ffe9a3}
+#ai header button{background:transparent;border:2px solid #fff;color:#fff;border-radius:50%;width:32px;height:32px;font:700 16px var(--h)}
+#aiLog{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--paper)}
+.msg{max-width:88%;padding:9px 12px;border-radius:14px;font-size:15px;line-height:1.45;word-wrap:break-word;overflow-wrap:anywhere}
+.msg.bot{background:var(--soft);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line)}
+.msg.me{background:var(--az);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.msg a{color:var(--az-t);font-weight:700}
+.msg ul{margin:6px 0 0;padding-left:18px}.msg li{margin-bottom:3px}
+.dots{display:inline-flex;gap:4px;padding:3px 0}.dots i{width:7px;height:7px;border-radius:50%;background:var(--mute-t);animation:dot 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dot{50%{transform:translateY(-5px);opacity:.5}}
+#aiChips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px 0;background:var(--paper)}
+#aiChips button{border:2px solid var(--az-t);background:var(--card);color:var(--az-t);border-radius:99px;padding:4px 10px;font:600 13px var(--h)}
+#aiChips button:hover{background:var(--az);color:#fff}
+#aiForm{display:flex;gap:8px;padding:10px 12px;border-top:2px solid var(--line);background:var(--card)}
+#aiForm input{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 12px;border-radius:99px;border:2px solid var(--line);background:var(--paper);color:var(--ink)}
+#aiForm button{border:0;border-radius:99px;background:var(--az);color:#fff;font:700 15px var(--h);padding:0 16px}
+#aiForm button:disabled{opacity:.5;cursor:default}
+@media(max-width:560px){#ai{right:8px;width:calc(100vw - 16px);bottom:84px}#aiFab{right:10px;bottom:12px}#aiChips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}#aiChips button{white-space:nowrap;flex:none}}
+</style></head><body>
+<a class="skip" href="#intro">Saltar al contenido</a>
+<noscript><p style="padding:16px;background:#FFD23F;color:#1d2433;margin:0">Esta página necesita JavaScript para los paneles interactivos. Las tarjetas de historia funcionan sin él.</p></noscript>
+<header class="hero" id="top"><i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i><i class="blob b3" aria-hidden="true"></i><i class="blob b4" aria-hidden="true"></i>
+<div class="in"><h1><span>Camino</span> <span>hacia</span> <span>la paz</span></h1>
+<p>Sube a la chiva: de las raíces del conflicto al Acuerdo de Paz de 2016, el Sistema Integral para la Paz y los retos que enfrenta hoy.</p>
+<a class="go" href="#intro">¡Arrancamos! 🚌</a></div></header>
+<div class="mochila" aria-hidden="true"></div>
+<nav id="road" aria-label="Paradas del recorrido"><ol>
+<li><a href="#intro">Inicio</a></li><li><a href="#historia">1 · Historia</a></li><li><a href="#acuerdo">2 · Acuerdo</a></li><li><a href="#mecanismos">3 · Mecanismos</a></li><li><a href="#retos">4 · Retos</a></li><li><a href="#cierre">5 · Cierre</a></li></ol>
+<div class="trk" aria-hidden="true"><span id="bus">🚌</span></div></nav>
+<main id="main">
+
+<section id="intro" style="--c:var(--am);--ct:var(--am-t)" aria-labelledby="introT"><h2 id="introT">Antes de arrancar</h2>
+<div class="cols">
+<div><b>¿Para quién es?</b>Para jóvenes que han oído hablar del conflicto, del Acuerdo y de la JEP, pero no tienen un hilo claro para entenderlos.<p class="note">Rango de edad exacto: por confirmar por el equipo.</p></div>
+<div><b>¿Cómo se usa?</b>Toca las tarjetas para abrirlas, sigue el camino hacia abajo y usa los botones «Ver…» para conectar cada problema con la respuesta del Acuerdo.</div>
+<div><b>Idea central</b>Cada problema histórico tiene su número. El Acuerdo de 2016 responde con cinco columnas, y el Sistema Integral para la Paz es el río por el que corre la verdad, la justicia y la reparación. Pero el camino tiene obstáculos.</div></div>
+<p style="margin:0 0 6px"><b>Al terminar podrás:</b></p>
+<ol class="ra">
+<li>Relacionar problemas históricos del campo y de la ciudad con lo que buscó cambiar el Acuerdo.</li>
+<li>Explicar qué propone cada columna del Acuerdo, con sus medidas principales.</li>
+<li>Distinguir qué hace la Comisión de la Verdad, la Unidad de Búsqueda y la JEP.</li>
+<li>Identificar los retos actuales de la JEP y quién dice qué sobre ellos.</li></ol>
+<a class="next" href="#historia" style="--on:#1d2433">Primera parada: Historia de Colombia 🚌</a></section>
+
+<section id="historia" style="--c:var(--ro);--ct:var(--ro-t)" aria-labelledby="t1"><h2 id="t1">1 · Historia de Colombia</h2>
+<p class="lead">Dos caminos que se juntan: lo que pasaba <b>en el campo</b> y lo que pasaba <b>en la ciudad</b>. Abre cada parada. Los círculos verdes con número indican a qué columna del Acuerdo responde cada problema (la columna 5, las víctimas, responde a todo el daño).</p>
+<p class="warn">Son condiciones que las notas del equipo relacionan con el conflicto. Ninguna lo explica por sí sola.<sup>[<a href="#f1">1</a>]</sup></p>
+<div class="lanes">
+<div class="lane" style="--c:var(--ve);--ct:var(--ve-t)"><h3>En el campo</h3>
+<details class="stop" id="s-c1" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>Inicios del siglo XX</small>Colonización interna</summary><div class="body">
+<p>Después de la Guerra de los Mil Días creció la población y mucha gente se fue a colonizar la periferia en busca de tierra para vivir. Allá no había presencia del Estado.</p>
+<p><b>Problemas:</b> tierra repartida de forma inequitativa y Estado ausente.</p><span class="pn" aria-label="Problema de la columna 1"><i>1</i></span><br><button class="mini" data-pill="1">Ver qué responde el Acuerdo</button></div></details>
+<details class="stop" id="s-c2" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>Años 60</small>Marquetalia y las FARC</summary><div class="body">
+<p>En ese campo sin Estado nace la «República Independiente de Marquetalia» y, con ella, la guerrilla de las FARC-EP: el campo empieza a hacerse sentir en la política, pero con armas.</p>
+<p><b>Problema:</b> las diferencias políticas se resolvían con armas.</p><span class="pn" aria-label="Problema de la columna 3"><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details>
+<details class="stop" id="s-c3" style="--kk:var(--ve);--kt:var(--ve-t)"><summary><small>Décadas siguientes</small>Las FARC y el narcotráfico</summary><div class="body">
+<p>Con el tiempo, las FARC se financian con el narcotráfico y recurren al reclutamiento forzado. Las economías ilegales se mezclan con el campo.</p>
+<p><b>Problema:</b> el narcotráfico en el campo.</p><span class="pn" aria-label="Problema de la columna 4"><i>4</i></span><br><button class="mini" data-pill="4">Ver qué responde el Acuerdo</button></div></details>
+</div>
+<div class="lane" style="--c:var(--na);--ct:var(--na-t)"><h3>En la ciudad</h3>
+<details class="stop" id="s-u1" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>1948</small>La Violencia</summary><div class="body">
+<p>Asesinan a Jorge Eliécer Gaitán y explota la violencia interna entre los partidos Liberal y Conservador.</p>
+<p><b>Problema:</b> no había diversidad política ni derechos para participar y opinar distinto.</p><span class="pn" aria-label="Problema de la columna 2"><i>2</i></span><br><button class="mini" data-pill="2">Ver qué responde el Acuerdo</button></div></details>
+<details class="stop" id="s-u2" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>1958 – 1974</small>El Frente Nacional</summary><div class="body">
+<p>Liberales y conservadores acuerdan turnarse el poder para frenar la violencia. La paz entre ellos deja afuera a otras voces políticas.</p>
+<p><b>Problema:</b> poca diversidad política.</p><span class="pn" aria-label="Problema de la columna 2"><i>2</i></span><br><button class="mini" data-pill="2">Ver qué responde el Acuerdo</button></div></details>
+<details class="stop" id="s-u3" style="--kk:var(--na);--kt:var(--na-t)"><summary><small>Años 80</small>Belisario y la Unión Patriótica</summary><div class="body">
+<p>Un proceso de paz con el gobierno de Belisario Betancur abre la puerta a la Unión Patriótica, un partido que nace de ese proceso. Sus integrantes sufren asesinatos sistemáticos. La JEP estableció que entre 1984 y 2016 hubo 5.733 víctimas entre asesinadas y desaparecidas.<sup>[<a href="#f13">13</a>]</sup></p>
+<p><b>Problema:</b> las diferencias políticas se resolvían con armas.</p><span class="pn" aria-label="Problemas de las columnas 2 y 3"><i>2</i><i>3</i></span><br><button class="mini" data-pill="3">Ver qué responde el Acuerdo</button></div></details>
+</div></div>
+<svg class="merge" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="var(--az)" stroke-width="4" stroke-dasharray="7 6" vector-effect="non-scaling-stroke"><path d="M22 0 C22 40 40 40 48 70" vector-effect="non-scaling-stroke"/><path d="M78 0 C78 40 60 40 52 70" vector-effect="non-scaling-stroke"/></g></svg>
+<div class="trunk"><h3>Los dos caminos se juntan</h3>
+<details class="stop" id="s-t1" style="--kk:var(--az);--kt:var(--az-t)"><summary><small>1991</small>Nueva Constitución</summary><div class="body"><p>Una Asamblea Nacional Constituyente redacta la Constitución de Colombia. Entre sus 70 integrantes había exguerrilleros: el M-19, que había dejado las armas, obtuvo 19 puestos.<sup>[<a href="#f14">14</a>]</sup> Se abre la puerta a más participación política.</p></div></details>
+<details class="stop" id="s-t2" style="--kk:var(--az);--kt:var(--az-t)"><summary><small>1999 – 2001</small>La silla vacía</summary><div class="body"><p>El gobierno de Andrés Pastrana negocia con las FARC. El proceso se recuerda por la «silla vacía» y termina sin acuerdo.</p></div></details>
+<details class="stop" id="s-t3" style="--kk:var(--az);--kt:var(--az-t)"><summary><small>Después</small>Escalada del conflicto</summary><div class="body"><p>El conflicto se intensifica. Las FARC pasan a ser tratadas como una organización terrorista, y el narcotráfico y el campo siguen entrelazados.</p><span class="pn" aria-label="Problema de la columna 4"><i>4</i></span><br><button class="mini" data-pill="4">Ver qué responde el Acuerdo</button></div></details>
+<p class="dest">Y de ahí se llega al Acuerdo de Paz ⬇</p></div>
+<a class="next" href="#acuerdo">Siguiente parada: el Acuerdo de Paz 🚌</a></section>
+
+<section id="acuerdo" style="--c:var(--az);--ct:var(--az-t)" aria-labelledby="t2"><h2 id="t2">2 · Acuerdo de Paz 2016</h2>
+<div class="what"><h3>¿Qué es el Acuerdo de Paz de 2016?</h3>
+<p>Imagina que después de más de 50 años de guerra entre el Estado colombiano y la guerrilla más grande y antigua del país (las FARC-EP), ambas partes entendieron que por la vía de las armas nadie iba a ganar y quienes más sufrían eran los civiles. Tras cuatro años de negociación en La Habana (Cuba) y un ajuste luego del plebiscito de octubre de 2016, el 24 de noviembre de 2016 firmaron el Acuerdo Final.<sup>[<a href="#f16">16</a>]</sup></p>
+<p>Más que un simple contrato para dejar de disparar, el Acuerdo es una <b>hoja de ruta</b> para cambiar las condiciones que alimentaron la violencia durante décadas. Se sostiene sobre <b>cinco puntos principales</b>. Toca una columna para ver qué propone, qué problema responde y qué se sabe de su avance.<sup>[<a href="#f2">2</a>]</sup></p></div>
+<div class="pedi" aria-hidden="true">Acuerdo de paz</div><div class="cornice" aria-hidden="true"></div>
+<div class="pillars" id="pillars" role="group" aria-label="Las cinco columnas del Acuerdo"></div>
+<div class="panel" id="pp" aria-live="polite"><p>👆 Elige una columna.</p></div>
+<p class="note">El texto oficial tiene <b>seis puntos</b>. El sexto, la implementación y verificación, es el piso que sostiene las otras cinco columnas.<sup>[<a href="#f2">2</a>]</sup></p>
+<a class="next" href="#mecanismos">Siguiente parada: los mecanismos 🚌</a></section>
+
+<section id="mecanismos" style="--c:var(--ve);--ct:var(--ve-t)" aria-labelledby="t3"><h2 id="t3">3 · Sistema Integral para la Paz</h2>
+<p class="lead">La columna 5 se convierte en un río con tres estaciones. Son los <b>mecanismos</b> del Sistema Integral de Verdad, Justicia, Reparación y No Repetición: trabajan juntos, pero cada uno hace algo distinto.<sup>[<a href="#f12">12</a>]</sup></p>
+<span class="sign">Mecanismos</span>
+<div class="river" id="river">
+<svg class="bg" viewBox="0 0 400 430" preserveAspectRatio="none" aria-hidden="true"><path d="M300 0 C300 80 90 60 110 160 C130 250 330 230 300 330 C280 400 160 380 200 430" fill="none" stroke="var(--river)" stroke-width="64" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M300 0 C300 80 90 60 110 160 C130 250 330 230 300 330 C280 400 160 380 200 430" fill="none" stroke="var(--az)" stroke-width="3" stroke-dasharray="8 12" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+<button class="st" id="st-jep" data-m="jep" aria-pressed="false" style="--kk:var(--az);--kt:var(--az-t)">JEP<small>Justicia</small></button>
+<button class="st dk" id="st-ubpd" data-m="ubpd" aria-pressed="false" style="--kk:var(--na);--kt:var(--na-t)" >UBPD<small>Búsqueda de desaparecidos</small></button>
+<button class="st dk" id="st-cev" data-m="cev" aria-pressed="false" style="--kk:var(--am);--kt:var(--am-t)">Comisión de la Verdad<small>Verdad</small></button>
+</div>
+<div class="panel" id="pm" aria-live="polite"><p>👆 Elige una estación del río.</p></div>
+<a class="next" href="#retos">Siguiente parada: los retos ⚠️</a></section>
+
+<section id="retos" style="--c:var(--ro);--ct:var(--ro-t)" aria-labelledby="t4"><h2 id="t4">4 · Problemas que afronta la JEP</h2>
+<p class="lead">El río no es un camino libre. Estos son los obstáculos que aparecen hoy, con lo que dicen las fuentes y quién lo dice. Abre cada uno.</p>
+<div class="zone"><div class="signs"><span class="sg p">PELIGRO</span><span class="ico" aria-hidden="true">🪨 🚧 ⛏️</span><span class="sg c">CUIDADO</span></div>
+<div class="row" id="rc" role="group" aria-label="Retos de la JEP"></div></div>
+<div class="panel" id="rp" aria-live="polite"><p>👆 Elige un obstáculo.</p></div>
+<p class="note">Datos y debates a octubre de 2026: pueden cambiar. Cuando algo lo afirma una persona o un sector y la fuente no lo verifica, se dice así.</p>
+<a class="next" href="#cierre">Última parada: cierre 🚌</a></section>
+
+<section id="cierre" style="--c:var(--na);--ct:var(--na-t);--on:#1d2433" aria-labelledby="t5"><h2 id="t5">5 · Conclusión</h2>
+<p class="big">El Acuerdo no cerró la historia: la dejó abierta.</p>
+<p class="lead">Respondió a problemas viejos (tierra, Estado ausente, política con armas, narcotráfico) y creó mecanismos para las víctimas. Hoy esos mecanismos enfrentan obstáculos. Entonces queda una pregunta:</p>
+<p class="big" style="color:var(--ct)">¿Qué hace falta para que la verdad, la justicia y la reparación lleguen a las víctimas y la paz dure?</p>
+<label for="r"><b>Tu reflexión</b> <span class="note">(se queda en tu pantalla; no se guarda ni se envía)</span></label>
+<textarea id="r" placeholder="Escribe aquí lo que piensas…"></textarea>
+<h3 style="margin:22px 0 4px">Para seguir explorando (sitios oficiales)</h3>
+<div class="res" id="res"></div>
+<a class="next" href="#top">Volver al inicio 🚌</a></section>
+</main>
+
+<footer><h2>Fuentes</h2>
+<p>Los números entre corchetes en el texto llevan a esta lista. Cuando solo hay una nota de prensa, es el respaldo de ese dato concreto.</p>
+<ol>
+<li id="f1">[1] Tablero y boceto del equipo (contenido de las paradas de historia y de las cinco columnas), con el documento «Procesos de paz en Colombia» de clase. Autoría y título por completar.</li>
+<li id="f2">[2] Gobierno Nacional y FARC-EP (24 de noviembre de 2016). <em>Acuerdo Final para la Terminación del Conflicto y la Construcción de una Paz Estable y Duradera</em>: <a href="https://www.fiscalia.gov.co/colombia/wp-content/uploads/2016-11-24-ACUERDO-FINAL.pdf" target="_blank" rel="noopener noreferrer">fiscalia.gov.co</a> (se abre en pestaña nueva).</li>
+<li id="f3">[3] Gobierno Nacional y FARC-EP (16 de septiembre de 2016). <em>Comunicado Conjunto No. 1</em>: <a href="https://www.cancilleria.gov.co/sites/default/files/Fotos2016/comunicado-conjunto-1-16-de-septiembre-2016-1476115353.pdf" target="_blank" rel="noopener noreferrer">cancilleria.gov.co</a>.</li>
+<li id="f4">[4] Swissinfo, «Las cifras que deja el informe de la Comisión de la Verdad en Colombia» (2022): <a href="https://www.swissinfo.ch/spa/las-cifras-que-deja-el-informe-de-la-comisi%c3%b3n-de-la-verdad-en-colombia/47711396" target="_blank" rel="noopener noreferrer">swissinfo.ch</a>.</li>
+<li id="f5">[5] Publimetro (16 de septiembre de 2025), sobre la sanción de la JEP al último Secretariado de las FARC: <a href="https://www.publimetro.co/noticias/2025/09/16/atencion-jep-impone-sancion-de-8-anos-a-los-siete-miembros-del-ultimo-secretariado-de-las-farc/" target="_blank" rel="noopener noreferrer">publimetro.co</a>.</li>
+<li id="f6">[6] La Silla Vacía (septiembre de 2025), «Claves de la primera sentencia de la JEP contra militares por falsos positivos»: <a href="https://www.lasillavacia.com/silla-nacional/claves-de-la-primera-sentencia-de-jep-contra-militares-por-falsos-positivos/" target="_blank" rel="noopener noreferrer">lasillavacia.com</a>.</li>
+<li id="f7">[7] Asuntos Legales (5 de septiembre de 2025), sobre la octava actualización de la UBPD (132.877 personas): <a href="https://www.asuntoslegales.com.co/actualidad/unidad-de-busqueda-reporto-que-132-877-personas-desaparecieron-en-conflicto-armado-4218009" target="_blank" rel="noopener noreferrer">asuntoslegales.com.co</a>.</li>
+<li id="f8">[8] Infobae (18 de octubre de 2026), encuentro de firmantes de paz: <a href="https://www.infobae.com/colombia/2026/10/18/firmantes-de-paz-alertaron-por-su-seguridad-juridica-y-piden-garantias-ante-incertidumbre-por-el-futuro-de-la-jep-estamos-firmes-por-la-paz/" target="_blank" rel="noopener noreferrer">infobae.com</a>.</li>
+<li id="f9">[9] Infobae (20 de octubre de 2026), recorte presupuestal a la JEP: <a href="https://infobae.com/colombia/2026/10/20/sectores-de-derecha-celebraron-el-recorte-presupuestal-que-le-hicieron-a-la-jep-es-apenas-un-pellizco" target="_blank" rel="noopener noreferrer">infobae.com</a>.</li>
+<li id="f10">[10] Dejusticia, «La JEP, entre las críticas necesarias y los riesgos de debilitarla»: <a href="https://www.dejusticia.org/jep-entre-criticas-necesarias-y-riesgos-de-debilitarla" target="_blank" rel="noopener noreferrer">dejusticia.org</a>. Posición de una organización de la sociedad civil, no un dato oficial.</li>
+<li id="f11">[11] Instituto Kroc (7 de junio de 2022), sexto informe de implementación; Radio Nacional (8 de junio de 2022): <a href="https://kroc.nd.edu/news-events/news/kroc-institute-releases-sixth-report-on-colombian-peace-agreement-implementation" target="_blank" rel="noopener noreferrer">kroc.nd.edu</a>. Dato de 2022: faltan informes más recientes.</li>
+<li id="f12">[12] Comisión de la Verdad, <em>Cartilla vocabulario</em>: <a href="https://web.comisiondelaverdad.co/images/zoo/publicaciones/archivos/Cartilla_vocabulario_Comision.pdf" target="_blank" rel="noopener noreferrer">comisiondelaverdad.co</a>.</li>
+<li id="f13">[13] Radio Nacional de Colombia, sobre la decisión de la JEP del 22 de abril de 2022 (5.733 víctimas de la UP entre 1984 y 2016): <a href="https://radionacional.co/actualidad/judicial/crimenes-contra-la-union-patriotica-dejo-mas-de-5000-victimas-jep" target="_blank" rel="noopener noreferrer">radionacional.co</a>.</li>
+<li id="f14">[14] El Universal (Cartagena), «Las figuras de la Asamblea Nacional de 1991»: <a href="https://www.eluniversal.com.co/politica/las-figuras-de-la-asamblea-nacional-de-1991-29843-JREU108753" target="_blank" rel="noopener noreferrer">eluniversal.com.co</a>.</li>
+<li id="f15">[15] Registraduría Nacional (2022), <em>ABC de las curules de las Circunscripciones Transitorias Especiales de Paz</em>: <a href="https://registraduria.gov.co/IMG/pdf/20220207_abece-curules-citrep.pdf" target="_blank" rel="noopener noreferrer">registraduria.gov.co</a>.</li>
+<li id="f16">[16] Vanguardia (2 de octubre de 2026), «10 años del No al plebiscito por la paz»: <a href="https://www.vanguardia.com/colombia/2026/10/02/10-anos-del-no-al-plebiscito-por-la-paz-que-paso-despues-con-el-acuerdo-firmado-con-las-farc/" target="_blank" rel="noopener noreferrer">vanguardia.com</a>.</li>
+<li id="f17">[17] El Heraldo (16 de septiembre de 2025), titular «Sentencia de la JEP contra exFARC desata opiniones políticas divididas»: <a href="https://www.elheraldo.co/colombia/2025/09/16/sentencia-de-la-jep-contra-exfarc-desata-opiniones-politicas-divididas/" target="_blank" rel="noopener noreferrer">elheraldo.co</a>.</li>
+<li id="f18">[18] Sitios de las entidades de la sección de cierre: son recursos para explorar, no respaldo de los datos.</li></ol>
+<p class="note">Algunas cifras vienen de prensa y no del texto original de cada entidad. Conviene contrastarlas con las fuentes primarias antes de citarlas en un trabajo.</p></footer>
+
+
+<button id="aiFab" type="button" aria-expanded="false" aria-controls="ai" aria-label="Abrir el asistente de la página"><span aria-hidden="true">💬</span></button>
+<aside id="ai" hidden aria-label="Asistente de la página (simulado)">
+<header><div><b>Asistente de la chiva</b><small>Simulado · responde por palabras clave</small></div><button type="button" id="aiClose" aria-label="Cerrar el asistente">✕</button></header>
+<div id="aiLog" role="log" aria-live="polite" aria-relevant="additions"></div>
+<div id="aiChips" aria-label="Preguntas sugeridas"></div>
+<form id="aiForm" autocomplete="off"><label class="sr" for="aiIn">Escribe tu pregunta</label><input id="aiIn" type="text" maxlength="200" placeholder="Escribe tu pregunta…"><button type="submit" id="aiSend">Enviar</button></form>
+</aside>
+<script>window.CAMINO_AI_ENDPOINT='/api/chat';</script>
+<script>
+const $=s=>document.querySelector(s);
+const c=n=>`<sup>[<a href="#f${n}">${n}</a>]</sup>`;
+const esc=s=>s;
+
+/* ---------- Columnas del Acuerdo ---------- */
+const PIL=[
+{n:1,l:'Campo',t:'Reforma Rural Integral: el campo',k:'--ve',kt:'--ve-t',pt:'Reforma Rural Integral',
+ s:'Busca llevar tierras, vías, salud, agua y educación a los campesinos en las zonas más olvidadas, para que vivir en el campo no sea sinónimo de pobreza y abandono.',
+ pts:['Fondo de Tierras: tres millones de hectáreas en doce años para campesinos sin tierra o con muy poca.'+c(2),'Formalizar la propiedad de millones de hectáreas que hoy no tienen títulos.','Programas de desarrollo con enfoque territorial (PDET) en las regiones más golpeadas: vías, salud, educación y acceso al agua.'],
+ resp:['s-c1'],hoy:'El Instituto Kroc encontró, en su informe de 2022, que la reforma rural y la participación política eran los puntos con menor avance.'+c(11),goto:null},
+{n:2,l:'Participación',t:'Participación política: la voz',k:'--na',kt:'--na-t',pt:'Participación política',
+ s:'Garantiza que cualquier persona, movimiento social o partido de oposición pueda defender sus ideas y hacer política sin miedo a que lo silencien con violencia, dando además voz en el Congreso a las regiones más golpeadas por la guerra.',
+ pts:['Garantías para que la oposición y los movimientos sociales puedan participar sin ser perseguidos.','El partido de los excombatientes tiene un espacio garantizado en el Congreso por dos periodos.','16 Circunscripciones Transitorias Especiales de Paz: curules para las zonas más golpeadas por el conflicto. Se materializaron con el Acto Legislativo 02 de 2021, para los periodos 2022–2026 y 2026–2030.'+c(15)],
+ resp:['s-u1','s-u2','s-u3'],hoy:'Responde a la falta de espacio para pensar distinto y a lo que le pasó a la Unión Patriótica.',goto:null},
+{n:3,l:'Fin del conflicto',t:'Fin del conflicto: las armas',k:'--ro',kt:'--ro-t',pt:'Fin del conflicto',
+ s:'Fue el compromiso para silenciar los fusiles definitivamente. Las FARC-EP entregaron sus armas a la ONU y pasaron a la vida civil para hacer política con palabras y sin violencia, a cambio de garantías para su seguridad y reincorporación.',
+ pts:['Cese al fuego y de hostilidades bilateral y definitivo, y dejación de las armas con verificación de la ONU.','Las FARC se concentraron en 20 zonas y 7 puntos transitorios de normalización.'+c(3),'Reincorporación a la vida civil: económica, social y política. Las FARC-EP pasaron a ser un partido político.','Garantías de seguridad para quienes dejaron las armas y para la población.'],
+ resp:['s-c2','s-u3'],hoy:'La seguridad de los firmantes sigue siendo uno de los retos de hoy.',goto:['retos','Ver los retos']},
+{n:4,l:'Narcotráfico',t:'Solución a las drogas ilícitas: el narcotráfico',k:'--az',kt:'--az-t',pt:'Solución al problema de las drogas ilícitas',
+ s:'Propone debilitar el negocio del narcotráfico sin tratar a los campesinos como criminales: apoya a las familias rurales para cambiar los cultivos de coca por productos legales, trata el consumo como un asunto de salud pública y persigue a las mafias.',
+ pts:['Programa Nacional Integral de Sustitución de Cultivos de Uso Ilícito: las familias campesinas se comprometen a sustituir y reciben apoyo.','El consumo se trata como un tema de salud pública.','Persecución a las redes criminales que mueven el negocio.'],
+ resp:['s-c3','s-t3'],hoy:'Responde a la relación entre narcotráfico, conflicto y campo.',goto:null},
+{n:5,l:'Víctimas',t:'Acuerdo sobre las víctimas: verdad y justicia',k:'--ro',kt:'--ro-t',pt:'Víctimas: Verdad, Justicia, Reparación y No Repetición',
+ s:'Es el corazón del Acuerdo. Pone en el centro a los millones de personas que sufrieron la guerra para que se sepa la verdad de lo ocurrido, se busque a los desaparecidos, los responsables reparen el daño causado y la historia no se repita.',
+ pts:['Crea el Sistema Integral de Verdad, Justicia, Reparación y No Repetición: una Comisión de la Verdad, una Unidad de Búsqueda y la JEP.'+c(12),'Pone a las víctimas en el centro: saber qué pasó, que haya justicia, que se repare el daño y que no se repita.','La justicia busca ser restaurativa: las sanciones dependen de lo que cada persona aporte a las víctimas.'],
+ resp:[],hoy:'Responde a todo el daño que dejó el conflicto, en el campo y en la ciudad.',goto:['mecanismos','Seguir el río de los mecanismos']}
+];
+
+const pp=$('#pp'),pw=$('#pillars');
+pw.innerHTML=PIL.map(p=>`<button class="pil" data-i="${p.n-1}" aria-pressed="false"><span class="shaft"><b>${p.n}</b></span><span class="base" aria-hidden="true"></span><span class="l">${p.l}</span></button>`).join('');
+const stopName=id=>{const m=document.getElementById(id);if(!m)return id;const sm=m.querySelector('summary small');const t=m.querySelector('summary').textContent.replace(/\s+/g,' ').trim();const y=sm?sm.textContent.trim():'';return y?y+' · '+t.slice(y.length).trim():t};
+function showPil(i,scroll){
+ const p=PIL[i];
+ pw.querySelectorAll('.pil').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));
+ pp.style.setProperty('--k',`var(${p.k})`);pp.style.setProperty('--kt',`var(${p.kt})`);
+ pp.innerHTML=`<span class="badge">Punto ${p.n}</span><span class="badge">${p.pt}</span><h3>${p.t}</h3><p>${p.s}</p><ul>${p.pts.map(x=>`<li>${x}</li>`).join('')}</ul>`+
+ (p.resp.length?`<span class="tag">Responde a estos momentos de la historia</span>${p.resp.map(id=>`<button class="mini" data-stop="${id}">${stopName(id)}</button>`).join(' ')}`:'')+
+ `<p style="margin-top:8px"><b>Hoy:</b> ${p.hoy}</p>`+(p.goto?`<a class="btnl" href="#${p.goto[0]}">${p.goto[1]}</a>`:'');
+ document.querySelectorAll('.stop').forEach(s=>s.classList.remove('hl'));
+ if(scroll)document.getElementById('acuerdo').scrollIntoView({behavior:'smooth'});
+}
+pw.addEventListener('click',e=>{const b=e.target.closest('.pil');if(b)showPil(+b.dataset.i)});
+document.addEventListener('click',e=>{
+ const bp=e.target.closest('[data-pill]');if(bp){showPil(+bp.dataset.pill-1,true);return}
+ const bs=e.target.closest('[data-stop]');if(bs){const s=document.getElementById(bs.dataset.stop);s.open=true;s.scrollIntoView({behavior:'smooth',block:'center'});s.classList.remove('hl');void s.offsetWidth;s.classList.add('hl');setTimeout(()=>s.focus&&s.querySelector('summary').focus({preventScroll:true}),400)}
+});
+
+/* ---------- Mecanismos ---------- */
+const MEC={
+cev:{t:'Comisión para el Esclarecimiento de la Verdad',k:'--am',kt:'--am-t',tipo:'Mecanismo de verdad · extrajudicial',
+ q:'Esclarecer lo que pasó en el conflicto, reconocer a las víctimas y promover la convivencia. Es extrajudicial: lo que recibe no se usa en procesos judiciales.'+c(12),
+ h:['Entregó su informe final el 28 de junio de 2022.'+c(4),'Entre 1985 y 2018, 450.664 personas perdieron la vida por el conflicto; con subregistro podrían llegar a unas 800.000.'+c(4),'7.752.964 personas fueron desplazadas entre 1985 y 2019, y 16.238 niños, niñas y adolescentes reclutados entre 1990 y 2017.'+c(4)],
+ hoy:'Terminó su trabajo, pero su informe con recomendaciones de no repetición sigue disponible para leer.',
+ link:['https://www.comisiondelaverdad.co','Comisión de la Verdad']},
+ubpd:{t:'Unidad de Búsqueda de Personas dadas por Desaparecidas',k:'--na',kt:'--na-t',tipo:'Mecanismo humanitario · extrajudicial',
+ q:'Buscar a las personas dadas por desaparecidas en el conflicto: ubicarlas si siguen con vida y, si murieron, identificar sus restos y entregarlos dignamente. Es confidencial y no reemplaza las investigaciones judiciales.'+c(12),
+ h:['Su octava actualización (corte a julio de 2025) registra 132.877 personas desaparecidas en el conflicto, por hechos anteriores al 1 de diciembre de 2016.'+c(7),'Antioquia (25.794), Meta (8.430) y Valle del Cauca (8.219) tienen más casos.'+c(7),'La cifra de la Comisión de la Verdad (121.768 entre 1985 y 2016) es distinta porque usan periodos y métodos diferentes.'+c(4)],
+ hoy:'Sigue buscando. Sus cifras se actualizan con nuevas bases de datos.',
+ link:['https://unidadbusqueda.gov.co','Unidad de Búsqueda']},
+jep:{t:'Jurisdicción Especial para la Paz',k:'--az',kt:'--az-t',tipo:'Mecanismo de justicia · judicial',
+ q:'Investiga, juzga y sanciona las graves violaciones de derechos humanos y las infracciones graves al derecho humanitario del conflicto. Sus sanciones buscan reparar, según lo que cada persona aporte a las víctimas.'+c(12),
+ h:['Trabaja por «macrocasos». El Caso 03, sobre ejecuciones extrajudiciales presentadas como bajas en combate («falsos positivos»), investiga 6.403 casos y tiene 163 imputados.'+c(6),'Septiembre de 2025, primeras sentencias: ocho años de sanción propia para siete exintegrantes del último Secretariado de las FARC (Caso 01, secuestro) y para 12 militares del Batallón La Popa (135 víctimas).'+c(5)+c(6),'La sanción propia no es cárcel, pero sí implica restricciones reales de libertad y proyectos restaurativos, como la búsqueda de desaparecidos, el desminado y la construcción de memoria.'+c(5),'Quienes no reconocen su responsabilidad van a un juicio adversarial. En el caso La Popa, tres comandantes de mayor rango no la aceptaron.'+c(6)],
+ hoy:'Es el mecanismo más discutido hoy. Mira la siguiente parada.',
+ link:['https://www.jep.gov.co','JEP']}
+};
+const pm=$('#pm');
+document.querySelectorAll('.st').forEach(b=>b.addEventListener('click',()=>{
+ const m=MEC[b.dataset.m];
+ document.querySelectorAll('.st').forEach(x=>x.setAttribute('aria-pressed',x===b));
+ pm.style.setProperty('--k',`var(${m.k})`);pm.style.setProperty('--kt',`var(${m.kt})`);
+ pm.innerHTML=`<span class="badge">${m.tipo}</span><h3>${m.t}</h3><span class="tag">Qué hace</span><p>${m.q}</p><span class="tag">Datos clave</span><ul>${m.h.map(x=>`<li>${x}</li>`).join('')}</ul><p><b>Hoy:</b> ${m.hoy}</p><a class="btnl ${m.k==='--am'?'dk':''}" href="${m.link[0]}" target="_blank" rel="noopener noreferrer">Sitio de ${m.link[1]} <span class="sr">(se abre en pestaña nueva)</span> ↗</a>`+
+ `<div class="cmp"><div><b>Comisión</b>Verdad. Extrajudicial. Terminó en 2022.</div><div><b>UBPD</b>Humanitaria. Extrajudicial. Sigue buscando.</div><div><b>JEP</b>Justicia. Judicial. Sigue funcionando.</div></div>`;
+}));
+
+/* ---------- Retos ---------- */
+const RET=[
+{id:'pres',t:'Presupuesto',k:'--ro',kt:'--ro-t',
+ q:'En octubre de 2026, la Cámara de Representantes aprobó un recorte de más de $181.000 millones a la JEP en el Presupuesto General de 2027.'+c(9)+' Otra fuente habla de un recorte de $170.000 millones en una etapa previa.'+c(10),
+ a:['Centro Democrático y otros sectores lo celebran y piden recortar gastos y burocracia; cuestionan los contratos con el PNUD. Son afirmaciones que la nota no verifica.'+c(9)],
+ b:['Dejusticia dice que el presupuesto no puede usarse como presión sobre los jueces y que el recorte no está bien justificado.'+c(10)],
+ nota:'El trámite puede cambiar: verifica la cifra final.'},
+{id:'ref',t:'Cambios a su mandato',k:'--az',kt:'--az-t',
+ q:'Hay proyectos en el Congreso para cambiar la JEP: una revisión extraordinaria de sentencias contra la fuerza pública (Acto Legislativo 004 de 2026) y una fecha límite de funcionamiento en marzo de 2028 (018 de 2026).'+c(8)+' Otra propuesta reduciría su mandato de 15 a 10 años.'+c(10),
+ a:['Quienes los impulsan critican la JEP y buscan más control sobre los casos de militares.'],
+ b:['Dejusticia advierte que acabaría con su papel de órgano de cierre, aumentaría la inseguridad jurídica y podría exponer al Estado ante la Corte Penal Internacional.'+c(10)],
+ nota:'Son proyectos: no son ley. Revisa en qué etapa están.'},
+{id:'seg',t:'Seguridad de los firmantes',k:'--ve',kt:'--ve-t',
+ q:'El 17 de octubre de 2026, más de 300 firmantes de paz se reunieron en Bogotá. Un vocero afirmó que más de 503 firmantes han sido asesinados; la nota no verifica esa cifra.'+c(8),
+ a:['Piden al Gobierno garantías de seguridad y estabilidad jurídica para continuar su reincorporación.'+c(8)],
+ b:[],nota:'Pide una cifra oficial o de verificación independiente antes de citarla.'},
+{id:'tie',t:'Tiempos y rendición de cuentas',k:'--na',kt:'--na-t',
+ q:'Dejusticia considera legítimo que se exija a la JEP rendir cuentas por sus recursos y por el tiempo de sus investigaciones, simplificar trámites, definir pronto la situación jurídica de quienes no son máximos responsables y coordinarse mejor con otras entidades.'+c(10)+' La escala es enorme: solo el Caso 03 tiene 6.403 casos.'+c(6),
+ a:['Las primeras sentencias llegaron en septiembre de 2025.'+c(5)],b:[],nota:'Una crítica puede ser válida sin pedir desmontar la JEP.'},
+{id:'cre',t:'Credibilidad de las sanciones',k:'--ro',kt:'--ro-t',
+ q:'Las sanciones propias no son cárcel: son hasta ocho años de restricciones y proyectos restaurativos.'+c(5)+' Medios reportaron opiniones políticas divididas tras las primeras sentencias.'+c(17),
+ a:['Para quienes critican: una sanción sin cárcel no alcanza para delitos tan graves.'],
+ b:['Para quienes defienden: a cambio, los comparecientes aportan verdad y reparan; quien no reconoce va a juicio y arriesga penas más largas.'+c(6)],nota:'Es un debate entre justicia retributiva y restaurativa: ¿qué crees tú?'},
+{id:'cum',t:'Cumplir lo pactado',k:'--az',kt:'--az-t',
+ q:'A cinco años de la firma, el Instituto Kroc encontró que el 30 % de las 578 disposiciones del Acuerdo estaba completo; la reforma rural y la participación política eran los puntos con menos avance.'+c(11),
+ a:[],b:[],nota:'Dato de 2022: busca el informe más reciente del Instituto Kroc antes de citarlo.'}
+];
+const rc=$('#rc'),rp=$('#rp');
+rc.innerHTML=RET.map((r,i)=>`<button class="chip" data-i="${i}" aria-pressed="false" style="--k:var(${r.k});--kt:var(${r.kt})">${r.t}</button>`).join('');
+rc.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const r=RET[+b.dataset.i];
+ rc.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));b.classList.add('seen');
+ rp.style.setProperty('--k',`var(${r.k})`);rp.style.setProperty('--kt',`var(${r.kt})`);
+ rp.innerHTML=`<h3>${r.t}</h3><p>${r.q}</p>`+((r.a.length||r.b.length)?`<div class="voz">${r.a.length?`<div><b>Lo que se dice</b>${r.a.join('<br>')}</div>`:''}${r.b.length?`<div><b>La otra mirada</b>${r.b.join('<br>')}</div>`:''}</div>`:'')+`<p class="note">${r.nota}</p>`;
+});
+
+/* ---------- Recursos ---------- */
+const RES=[['Acuerdo Final (texto)','https://www.fiscalia.gov.co/colombia/wp-content/uploads/2016-11-24-ACUERDO-FINAL.pdf','PDF · Fiscalía','--az','--az-t'],
+['Instituto Kroc: seguimiento','https://kroc.nd.edu/news-events/news/kroc-institute-releases-sixth-report-on-colombian-peace-agreement-implementation','Informe de implementación (2022)','--ve','--ve-t'],
+['JEP','https://www.jep.gov.co','Sitio oficial','--az','--az-t'],
+['Unidad de Búsqueda','https://unidadbusqueda.gov.co','Sitio oficial','--na','--na-t'],
+['Comisión de la Verdad','https://www.comisiondelaverdad.co','Informe final y legado','--am','--am-t'],
+['Centro Nacional de Memoria Histórica','https://centrodememoriahistorica.gov.co','Sitio oficial','--ro','--ro-t'],
+['Unidad para las Víctimas','https://www.unidadvictimas.gov.co','Sitio oficial','--ve','--ve-t'],
+['ARN: reincorporación','https://www.reincorporacion.gov.co','Sitio oficial','--na','--na-t'],
+['ART: renovación del territorio','https://www.renovacionterritorio.gov.co','Sitio oficial (PDET)','--az','--az-t']];
+$('#res').innerHTML=RES.map(r=>`<a href="${r[1]}" target="_blank" rel="noopener noreferrer" style="--k:var(${r[3]});--kt:var(${r[4]})"><b>${r[0]} ↗<span class="sr"> (se abre en pestaña nueva)</span></b><small>${r[2]}</small></a>`).join('');
+
+/* ---------- Barra y chiva ---------- */
+const ids=['intro','historia','acuerdo','mecanismos','retos','cierre'];
+const links=[...document.querySelectorAll('#road a')];
+function upd(){
+ let cur=0;ids.forEach((id,i)=>{const el=document.getElementById(id);if(el.getBoundingClientRect().top<window.innerHeight*0.4)cur=i});
+ links.forEach((a,i)=>i===cur?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
+ const el=document.getElementById(ids[cur]),r=el.getBoundingClientRect();
+ const frac=Math.min(1,Math.max(0,(window.innerHeight*0.4-r.top)/Math.max(r.height,1)));
+ $('#bus').style.left=((cur+frac)/ids.length*100)+'%';
+}
+addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+
+/* ---------- Asistente simulado (reglas + expresiones regulares) ---------- */
+(()=>{
+const fab=document.getElementById('aiFab'),box=document.getElementById('ai'),log=document.getElementById('aiLog'),form=document.getElementById('aiForm'),inp=document.getElementById('aiIn'),send=document.getElementById('aiSend'),chips=document.getElementById('aiChips');
+const norm=t=>t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿?¡!.,;:()"]/g,' ').replace(/\s+/g,' ').trim();
+const ref=n=>`<sup>[<a href="#f${n}">${n}</a>]</sup>`;
+const go=(id,t)=>`<a href="#${id}">${t}</a>`;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const SUG=['¿De qué trata la página?','¿Qué es la JEP?','Los puntos del Acuerdo','¿Cuáles son los retos?','Tengo un problema técnico'];
+
+/* Orden = prioridad. Cada regla: re (sobre texto sin tildes) y respuestas (se elige una al azar). */
+const RULES=[
+{k:'soporte',re:/\b(no (me )?(abre|abren|funciona|funcionan|carga|cargan|sirve|sirven|se ve|se ven|me deja|aparece|responde)|error|falla|fallo|se traba|se cuelga|bug|dano|danado|problema (tecnico|con la pagina)|soporte|ayuda tecnica|no puedo (abrir|entrar|ver|escribir)|pantalla en blanco|lento|se demora)\b/,
+ a:[`Vamos por partes:<ul><li>Recarga la página (F5).</li><li>Necesita JavaScript activado para los paneles.</li><li>Con teclado: Tab para moverte, Enter o Espacio para abrir tarjetas y Esc para cerrar este chat.</li><li>Si no cargan las tipografías, la página usa otras y sigue funcionando.</li><li>Los enlaces externos abren en una pestaña nueva.</li></ul>Si sigue fallando, cuéntale al equipo qué navegador usas y qué hiciste justo antes.`]},
+{k:'accesibilidad',re:/\b(accesib|lector de pantalla|modo oscuro|oscuro|contraste|letra (muy )?(pequena|chica)|tamano de letra|celular|movil|telefono|tablet)\b/,
+ a:[`La página se adapta al celular, respeta el modo oscuro de tu dispositivo, se puede usar solo con teclado y reduce las animaciones si tu sistema lo pide. Aún no se ha probado con un lector de pantalla real, así que si encuentras algo que no se lee bien, avísale al equipo.`]},
+{k:'uso',re:/\b(como (se )?(usa|uso|navego|navegar|funciona|empiezo|empezar|manejo)|instrucciones|tutorial|guia de uso|por donde (empiezo|empezar))\b/,
+ a:[`Es fácil:<ul><li>Sigue el camino hacia abajo; la chiva de la barra de arriba avanza contigo.</li><li>Toca las tarjetas para abrirlas.</li><li>Los botones «Ver qué responde el Acuerdo» unen cada problema histórico con su columna.</li><li>Toca una columna, una estación del río o un obstáculo para ver el detalle.</li></ul>Empieza por ${go('historia','la parada 1')}.`]},
+{k:'fuentes',re:/\b(fuente|fuentes|referencia|referencias|bibliografia|enlace|enlaces|link|links|recurso|recursos|pagina oficial|sitios oficiales|de donde (sale|sacan|salen)|confiable)\b/,
+ a:[`Las fuentes van numeradas al final de la página, y los números entre corchetes del texto llevan a ellas. Los sitios oficiales (Acuerdo Final, JEP, UBPD, Comisión de la Verdad, CNMH, Unidad para las Víctimas, ARN, ART e Instituto Kroc) están en ${go('cierre','la parada 5')}. Ojo: algunas cifras vienen de prensa, así que conviene contrastarlas con la fuente primaria antes de citarlas.`]},
+{k:'plebiscito',re:/\b(plebiscito|referendo|gano el no|el no|renegoci)/,
+ a:[`El 2 de octubre de 2016 ganó el «No» en el plebiscito. El texto se renegoció y el Acuerdo Final se firmó el 24 de noviembre de 2016.${ref(16)}`]},
+{k:'presupuesto',re:/\b(presupuesto|recorte|recortes|plata|dinero|financiacion|camara de representantes)\b/,
+ a:[`En octubre de 2026 la Cámara aprobó un recorte de más de $181.000 millones a la JEP en el presupuesto de 2027.${ref(9)} Unos sectores lo celebran; Dejusticia advierte que el presupuesto no debe usarse como presión sobre los jueces.${ref(10)} El trámite puede cambiar: verifica la cifra final. ${go('retos','Ver los retos')}`]},
+{k:'firmantes',re:/\b(firmantes|asesinados|asesinato de excombatientes|seguridad de los|garantias de seguridad)\b/,
+ a:[`En un encuentro del 17 de octubre de 2026, un vocero de los firmantes dijo que más de 503 han sido asesinados; la nota de prensa no verifica esa cifra, así que hay que buscar una oficial.${ref(8)} Ellos piden seguridad y estabilidad jurídica. ${go('retos','Ver los retos')}`]},
+{k:'retos',re:/\b(retos|reto|problemas de la jep|criticas|obstaculos|dificultades|desafios|peligro|que le pasa a la jep|futuro de la jep|reforma a la jep|proyectos de ley)\b/,
+ a:[`La parada 4 recoge seis obstáculos, con lo que dicen las fuentes y quién lo dice:<ul><li>Presupuesto y recortes</li><li>Cambios a su mandato</li><li>Seguridad de los firmantes</li><li>Tiempos y rendición de cuentas</li><li>Credibilidad de las sanciones</li><li>Cumplir lo pactado</li></ul>${go('retos','Ir a los retos')}`]},
+{k:'ubpd',re:/\b(ubpd|unidad de busqueda|desaparecid|desaparecidos|desaparicion|busqueda de personas)\b/,
+ a:[`La <b>UBPD</b> busca a las personas dadas por desaparecidas en el conflicto: ubicarlas si están vivas o, si murieron, identificar y entregar sus restos. Su octava actualización (julio de 2025) registra 132.877 personas desaparecidas.${ref(7)} La cifra de la Comisión de la Verdad es distinta (121.768 entre 1985 y 2016) porque usan periodos y métodos diferentes.${ref(4)}`]},
+{k:'cev',re:/\b(comision de la verdad|informe final|esclarecimiento|450\.?664|cev)\b/,
+ a:[`La <b>Comisión de la Verdad</b> entregó su informe final el 28 de junio de 2022. Calculó que entre 1985 y 2018 murieron 450.664 personas por el conflicto, y que hubo 7.752.964 desplazados entre 1985 y 2019.${ref(4)} Ya terminó su trabajo, pero el informe sigue disponible.`]},
+{k:'sistema',re:/\b(sistema integral|sip|sivjrnr|mecanismos|tres entidades|como funciona el sistema)\b/,
+ a:[`El Sistema Integral de Verdad, Justicia, Reparación y No Repetición tiene tres mecanismos que trabajan juntos:<ul><li><b>Comisión de la Verdad</b>: esclarece lo ocurrido (extrajudicial; terminó en 2022).</li><li><b>UBPD</b>: busca a las personas dadas por desaparecidas (humanitaria y extrajudicial).</li><li><b>JEP</b>: investiga, juzga y sanciona (justicia).</li></ul>${ref(12)} ${go('mecanismos','Ir al río de los mecanismos')}`]},
+{k:'jep',re:/\b(jep|jurisdiccion especial|macrocaso|macrocasos|sentencia|sentencias|sancion|sanciones|falsos positivos|secretariado|la popa)\b/,
+ a:[`La <b>JEP</b> (Jurisdicción Especial para la Paz) es el mecanismo de justicia: investiga, juzga y sanciona las graves violaciones de derechos humanos del conflicto, con sanciones que buscan reparar. En septiembre de 2025 dictó sus primeras sentencias: ocho años de sanción propia (sin cárcel, pero con restricciones y proyectos restaurativos) para siete exintegrantes del último Secretariado de las FARC${ref(5)} y para 12 militares del Batallón La Popa.${ref(6)} ${go('mecanismos','Ver más')}`]},
+{k:'transicional',re:/\b(justicia transicional|que es la justicia|justicia restaurativa|por que no carcel|carcel)\b/,
+ a:[`La justicia transicional es un conjunto de medidas para responder a violaciones masivas de derechos tras un conflicto, buscando verdad, justicia, reparación y no repetición. En Colombia la JEP aplica sanciones restaurativas a quienes reconocen su responsabilidad; quienes no la reconocen van a juicio y arriesgan penas más largas.${ref(5)}${ref(6)}`]},
+{k:'reforma',re:/\b(reforma rural|tierra|tierras|campesin|fondo de tierras|pdet|catastro|punto 1|primer punto|columna 1|pilar 1)\b/,
+ a:[`<b>Punto 1 · Reforma Rural Integral (el campo).</b> Busca llevar tierras, vías, salud, agua y educación a los campesinos de las zonas más olvidadas. Incluye un Fondo de Tierras de tres millones de hectáreas en doce años${ref(2)} y programas de desarrollo territorial (PDET). El Instituto Kroc halló en 2022 que fue de los puntos con menos avance.${ref(11)} ${go('acuerdo','Ver la columna 1')}`]},
+{k:'participacion',re:/\b(participacion|oposicion|curules|circunscripcion|citrep|punto 2|segundo punto|columna 2|pilar 2|union patriotica|\bup\b)\b/,
+ a:[`<b>Punto 2 · Participación política (la voz).</b> Garantiza que personas, movimientos y partidos de oposición puedan hacer política sin ser silenciados con violencia. Incluye 16 circunscripciones transitorias especiales de paz para las regiones más golpeadas (materializadas con el Acto Legislativo 02 de 2021).${ref(15)} Sobre la Unión Patriótica, la JEP estableció 5.733 víctimas entre 1984 y 2016.${ref(13)}`]},
+{k:'fin',re:/\b(fin del conflicto|armas|dejacion|desarme|desarmaron|zonas veredales|reincorporacion|excombatientes|desmovilizacion|punto 3|tercer punto|columna 3|pilar 3|onu)\b/,
+ a:[`<b>Punto 3 · Fin del conflicto (las armas).</b> Cese al fuego definitivo, dejación de armas con verificación de la ONU y reincorporación de las FARC-EP a la vida civil y política. Se concentraron en 20 zonas y 7 puntos transitorios.${ref(3)} ${go('acuerdo','Ver la columna 3')}`]},
+{k:'narco',re:/\b(narcotrafico|drogas|coca|cultivos|sustitucion|pnis|mafias|punto 4|cuarto punto|columna 4|pilar 4)\b/,
+ a:[`<b>Punto 4 · Narcotráfico (drogas ilícitas).</b> Propone debilitar el negocio sin tratar a los campesinos como criminales: apoya a las familias para sustituir cultivos de coca por productos legales, trata el consumo como tema de salud pública y persigue a las redes criminales. ${go('acuerdo','Ver la columna 4')}`]},
+{k:'victimas',re:/\b(victimas|verdad|reparacion|no repeticion|punto 5|quinto punto|columna 5|pilar 5|corazon del acuerdo)\b/,
+ a:[`<b>Punto 5 · Víctimas (verdad y justicia).</b> Es el corazón del Acuerdo: pone en el centro a quienes sufrieron la guerra para que se sepa la verdad, se busque a los desaparecidos, se repare el daño y no se repita. Para lograrlo crea el Sistema Integral para la Paz. ${go('mecanismos','Ver los mecanismos')}`]},
+{k:'historia',re:/\b(historia|raices|origen|campo y ciudad|la violencia|gaitan|frente nacional|marquetalia|farc|colonizacion|mil dias|constitucion|1991|caguan|silla vacia|pastrana|belisario|escalada|terrorismo|por que (empezo|paso|hubo))\b/,
+ a:[`En la parada 1 hay dos caminos que se juntan. <b>En el campo</b>: colonización interna sin presencia del Estado, Marquetalia y las FARC, y el narcotráfico. <b>En la ciudad</b>: La Violencia tras el asesinato de Gaitán, el Frente Nacional y la Unión Patriótica. Se juntan en la Constitución de 1991, la «silla vacía» (1999–2001) y la escalada del conflicto. ${go('historia','Ir a la historia')}`]},
+{k:'acuerdo',re:/\b(acuerdo|acuerdo de paz|acuerdo final|2016|la habana|habana|cinco puntos|seis puntos|puntos|columnas|pilares|firma|firmaron)\b/,
+ a:[`El Acuerdo Final se firmó el 24 de noviembre de 2016 entre el Gobierno y las FARC-EP, tras negociar en La Habana y ajustarlo después del plebiscito.${ref(16)} En la página se explica con cinco columnas: <b>1</b> campo, <b>2</b> participación política, <b>3</b> fin del conflicto, <b>4</b> narcotráfico y <b>5</b> víctimas. El texto oficial tiene seis puntos: el sexto, la implementación y verificación, sostiene a los demás.${ref(2)} ${go('acuerdo','Ir al Acuerdo')}`]},
+{k:'quien',re:/\b(quien eres|que eres|eres (una )?(ia|robot|bot|persona|humano)|eres real|inteligencia artificial|como te llamas|tu nombre|chatgpt|claude)\b/,
+ a:[`Soy un asistente <b>simulado</b>: no es inteligencia artificial real. Reconozco palabras clave y respondo con lo que ya está escrito en esta página. Si no sé algo, te lo digo.`]},
+{k:'servicios',re:/\b(de que (trata|va|se trata)|que (es|hay|ofrece|ofrecen|puedo hacer|contiene|tiene) (esta|la)? ?(pagina|esto|aqui)?|para que sirve|servicios|que servicios|que ofrece|secciones|paradas|contenido|objetivo|de que habla|que hacen|a quien va dirigida|publico)\b/,
+ a:[`Es un recorrido interactivo en cinco paradas, pensado para jóvenes:<ul><li>${go('historia','1 · Historia')}: campo y ciudad.</li><li>${go('acuerdo','2 · Acuerdo de Paz 2016')}: cinco columnas.</li><li>${go('mecanismos','3 · Sistema Integral para la Paz')}: JEP, UBPD y Comisión de la Verdad.</li><li>${go('retos','4 · Retos de la JEP')}.</li><li>${go('cierre','5 · Conclusión')} y recursos oficiales.</li></ul>Para guiarte, pregúntame «¿cómo se usa?».`]},
+{k:'gracias',re:/\b(gracias|muchas gracias|mil gracias|te agradezco|vale|ok|listo|perfecto|genial|chevere|buenisimo)\b/,
+ a:[`¡Con gusto! Si quieres seguir, pregúntame por el Acuerdo, la JEP o los retos. 🚌`,`¡A la orden! Aquí sigo por si te queda otra duda.`]},
+{k:'despedida',re:/\b(chao|chau|adios|hasta luego|hasta pronto|nos vemos|bye|me voy|hasta manana|cuidate)\b/,
+ a:[`¡Chao! Gracias por recorrer el camino hacia la paz. 🚌`,`¡Hasta luego! Vuelve cuando quieras seguir explorando.`]},
+{k:'saludo',re:/\b(hola|holi|buenas|buenos dias|buen dia|buenas tardes|buenas noches|hey|saludos|que mas|quiubo|ey|alo)\b/,
+ a:[`¡Hola! 👋 Soy el asistente simulado de <i>Camino hacia la paz</i>. Pregúntame por el Acuerdo de 2016, la JEP, la UBPD, la Comisión de la Verdad o los retos actuales.`,`¡Buenas! Súbete a la chiva. ¿Qué quieres saber: el Acuerdo, el Sistema Integral o los retos de la JEP?`]}
+];
+const FALLBACK=[`No estoy seguro de haber entendido. Puedo ayudarte con el Acuerdo de 2016, la JEP, la UBPD, la Comisión de la Verdad, los retos o cómo usar la página.`,`Eso no lo tengo en mi lista. Prueba con otras palabras, por ejemplo «¿qué es la JEP?» o «puntos del Acuerdo».`];
+function reply(text){const t=norm(text);for(const r of RULES){if(r.re.test(t))return{k:r.k,h:pick(r.a)}}return{k:'fallback',h:pick(FALLBACK)}}
+window.__aiReply=reply; /* solo para pruebas */
+
+function add(cls,html,asText){const d=document.createElement('div');d.className='msg '+cls;if(asText)d.textContent=html;else d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+let busy=false,misses=0,started=false,fails=0;
+const EP=window.CAMINO_AI_ENDPOINT||'';
+let mode=EP&&/^https?:$/.test(location.protocol)?'ia':'rules';
+const sub=document.querySelector('#ai header small'),hist=[];
+function setMode(m){mode=m;sub.textContent=m==='ia'?'IA generativa · puede equivocarse':'Simulado · responde por palabras clave'}
+setMode(mode);
+/* La respuesta de la IA es texto no confiable: se escapa y solo se permiten negrita, saltos de línea y citas [n] */
+const fmt=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+ .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')
+ .replace(/\[(\d{1,2}(?:\s*,\s*\d{1,2})*)\]/g,(m,l)=>{const ns=l.split(/\s*,\s*/).map(Number);return ns.every(n=>n>=1&&n<=18)?ns.map(n=>`<sup>[<a href="#f${n}">${n}</a>]</sup>`).join(''):m})
+ .replace(/\n/g,'<br>');
+async function viaIA(){
+ const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),25000);
+ try{const r=await fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-6)}),signal:ctl.signal});
+  if(!r.ok)throw new Error('http '+r.status);const j=await r.json();if(!j||typeof j.reply!=='string'||!j.reply.trim())throw new Error('vacío');return j.reply}
+ finally{clearTimeout(to)}
+}
+function done(){busy=false;send.disabled=false;inp.focus();log.scrollTop=log.scrollHeight}
+function ask(text){
+ text=text.trim();if(!text||busy)return;
+ add('me',text,true);inp.value='';busy=true;send.disabled=true;hist.push({role:'user',content:text.slice(0,500)});
+ const typ=add('bot','<span class="dots" role="status" aria-label="El asistente está escribiendo"><i></i><i></i><i></i></span>');
+ const r=reply(text);
+ if(mode==='ia'){
+  viaIA().then(rep=>{fails=0;hist.push({role:'assistant',content:rep.slice(0,500)});typ.innerHTML=fmt(rep);done()})
+  .catch(()=>{fails++;if(fails>=2)setMode('rules');typ.innerHTML=r.h+'<br><small>(La IA no respondió; contesté por palabras clave.)</small>';done()});
+  return;
+ }
+ const delay=500+Math.random()*1000; /* 500–1500 ms */
+ setTimeout(()=>{typ.innerHTML=r.h;misses=r.k==='fallback'?misses+1:0;done();
+  if(misses>=2){add('bot','Mejor elige una de las preguntas sugeridas de abajo 👇');misses=0}},delay);
+}
+function open(){box.hidden=false;fab.setAttribute('aria-expanded','true');fab.setAttribute('aria-label','Cerrar el asistente de la página');
+ if(!started){started=true;add('bot',mode==='ia'?`¡Hola! Soy un asistente de <b>IA generativa</b>. Respondo con base en el contenido de esta página y puedo equivocarme: contrasta los datos con las fuentes. ¿En qué te ayudo?`:`¡Hola! Soy un asistente <b>simulado</b>: respondo por palabras clave con lo que está en esta página, no soy IA real. ¿En qué te ayudo?`)}
+ inp.focus()}
+function close(){box.hidden=true;fab.setAttribute('aria-expanded','false');fab.setAttribute('aria-label','Abrir el asistente de la página');fab.focus()}
+chips.innerHTML=SUG.map(q=>`<button type="button">${q}</button>`).join('');
+chips.addEventListener('click',e=>{const b=e.target.closest('button');if(b)ask(b.textContent)});
+form.addEventListener('submit',e=>{e.preventDefault();ask(inp.value)});
+fab.addEventListener('click',()=>box.hidden?open():close());
+document.getElementById('aiClose').addEventListener('click',close);
+box.addEventListener('keydown',e=>{if(e.key==='Escape'){e.stopPropagation();close()}});
+log.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]')&&window.matchMedia('(max-width:640px)').matches){box.hidden=true;fab.setAttribute('aria-expanded','false')}});
+})();
+</script></body></html>
